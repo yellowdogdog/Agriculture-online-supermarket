@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "管理界面";
+}
+<h2>管理界面</h2>
+<div>
+    帐号
+    @Html.ActionLink("修改", "ManageAccountInfo", "Account")
+    @Html.ActionLink("删除", "DeleteAccount", "Account")
+</div>
+

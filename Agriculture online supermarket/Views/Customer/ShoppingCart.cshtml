@@ -1,0 +1,11 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title= "购物车";
+}
+<h2>购物车</h2>
+@Html.ActionLink("商品", "Detail", "Customer")
+@Html.ActionLink("删除", "DeleteProduct", "Customer")
+@Html.ActionLink("购买", "PurchaseAll", "Customer")
+@Html.ActionLink("+", "IncreaseNum", "Customer")
+@Html.ActionLink("-", "DecreaseNum", "Customer")
+

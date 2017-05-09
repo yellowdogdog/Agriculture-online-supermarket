@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "订单";
+}
+
+<h2>订单</h2>
+
+<table>
+    <tr>
+        <td>（未发货）</td>
+        <td>@Html.ActionLink("查看", "OrderDetail", "Customer")</td>
+    </tr>
+    <tr>
+        <td>（待收货）</td>
+        <td>@Html.ActionLink("查看", "OrderDetail", "Customer")</td>
+        <td>@Html.ActionLink("确认收货", "ConfirmReceipt", "Customer")</td>
+    </tr>
+    <tr>
+        <td>（已完成）</td>
+        <td>@Html.ActionLink("查看", "OrderDetail", "Customer")</td>
+        <td>@Html.ActionLink("申请退款", "ApplyRefund", "Customer")</td>
+    </tr>
+</table>

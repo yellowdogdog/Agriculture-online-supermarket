@@ -1,0 +1,129 @@
+﻿@model List<Agriculture_online_supermarket.Models.IndexModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "首页";
+}
+<h2>首页</h2>
+
+<div>
+    根据帐号自动确定：
+    @Html.ActionLink("卖家首页", "SellerIndex", "Seller")
+    @Html.ActionLink("管理员首页","AdminIndex","Account")
+</div>
+@Html.ActionLink("订单", "Orders", "Customer")
+@Html.ActionLink("购物车", "ShoppingCart", "Customer")
+@Html.ActionLink("商品1", "detail", "Customer")
+@Html.ActionLink("搜索", "Search", "Customer")
+<div class="container">
+  <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs">
+        <div id="carousel-299058" class="carousel slide">
+          <ol class="carousel-indicators">
+            <li data-target="#carousel-299058" data-slide-to="0" class=""> </li>
+            <li data-target="#carousel-299058" data-slide-to="1" class="active"> </li>
+            <li data-target="#carousel-299058" data-slide-to="2" class=""> </li>
+          </ol>
+          <div class="carousel-inner">
+            <div class="item"> <img class="img-responsive" src="~/Content/images/indexhead1.png" alt="">
+              <div class="carousel-caption">绿色食品 </div>
+            </div>
+            <div class="item active"> <img class="img-responsive" src="~/Content/images/indexhead2.png" alt="">
+              <div class="carousel-caption"> 有机农场 </div>
+            </div>
+            <div class="item"> <img class="img-responsive" src="~/Content/images/indexhead3.png" alt="">
+              <div class="carousel-caption"> 计142班 </div>
+            </div>
+          </div>
+          <a class="left carousel-control" href="#carousel-299058" data-slide="prev"><span class="icon-prev"></span></a> <a class="right carousel-control" href="#carousel-299058" data-slide="next"><span class="icon-next"></span></a></div>
+      </div>
+    </div>
+    <hr>
+  </div>
+<hr>
+<div class="container">
+    @*搜索，订单，购物车*@
+	@using (Html.BeginForm("Search", "Customer", null, FormMethod.Get, new { @class = "form-horizontal", role = "form" }))
+    {
+        
+        <div class="form-group" >
+            <div class="col-lg-9 col-md-12">
+                @Html.TextBox("SearchContent", null, new { @class = "form-control", @style = "display:inline;" })
+                <input type="submit" value="搜索" class="btn btn-default" />
+                
+            </div>
+            
+        </div>
+    }
+</div>
+<hr>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3 col-md-6 col-md-offset-3 col-lg-offset-0">
+      <div class="well">
+        <h3 class="text-center">分类</h3>
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="location1" class="control-label">
+                @Html.ActionLink("青菜","Search","Customer",new { @SearchContent="青菜"},null)
+            </label>
+</div>
+          <div class="form-group">
+            <label for="type1" class="control-label">Type</label>
+</div>
+          <div class="form-group">
+            <label for="pricefrom" class="control-label">Price From</label>
+</div>
+          <div class="form-group">
+            <label for="priceto" class="control-label">Price To</label>
+            <div class="input-group"> </div>
+          </div>
+</form>
+      </div>
+      <hr>
+      
+    </div>
+    <div class="col-lg-9 col-md-12">
+       @{
+           int count = 0;
+       }
+        @if (Model != null)
+        {
+            for (int i = 0; i < Math.Ceiling(Model.Count / 3.0); i++)
+            {
+                <div class="row">
+                    @for (int j = 0; j < 3; j++)
+                    {
+                        if (count < Model.Count)
+                        {
+                            Agriculture_online_supermarket.Models.IndexModel model = Model[count];
+
+
+                            <a href="Detail/@Html.Raw(model.productID)">
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                                    <div class="thumbnail">
+                                        <img src="@Html.Raw(model.imagePath)" alt="" class="img-responsive">
+                                        <div class="caption">
+                                            <h3>@Html.DisplayFor(modelitem => model.productName)</h3>
+                                            <p>@Html.DisplayFor(modelitem => model.sellerName)</p>
+                                            <hr>
+                                            <p class="text-center">￥@Html.DisplayFor(modelitem => model.price)</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            count++;
+                        }else
+                        {
+                            break;
+                        }
+                    }
+                    
+                </div>
+            }
+        }
+       
+
+    </div>
+</div>
+</div>

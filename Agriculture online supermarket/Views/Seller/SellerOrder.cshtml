@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "订单管理";
+}
+<h2>订单管理</h2>
+<table>
+    <tr>
+        <td>（未接单）</td>
+        <td>@Html.ActionLink("查看","SellerOrderDetail","Seller")</td>
+        <td>@Html.ActionLink("发货","Delivery","Seller")</td>
+        <td>@Html.ActionLink("取消","Refuse","Seller")</td>
+    </tr>
+    <tr>
+        <td>（未收货）</td>
+        <td>@Html.ActionLink("查看", "SellerOrderDetail", "Seller")</td>
+        <td>@Html.ActionLink("修改", "Delivery", "Seller")</td>
+    </tr>
+    <tr>
+        <td>（待退款）</td>
+        <td>@Html.ActionLink("查看", "SellerOrderDetail", "Seller")</td>
+        <td>@Html.ActionLink("同意", "AgreeRefund", "Seller")</td>
+        <td>@Html.ActionLink("拒绝", "DisagreeRefund", "Seller")</td>
+    </tr>
+    <tr>
+        <td>（已完成）</td>
+        <td>@Html.ActionLink("查看", "SellerOrderDetail", "Seller")</td>
+    </tr>
+</table>
