@@ -18,7 +18,7 @@ namespace Agriculture_online_supermarket.Persistent
         {
             return new SqlConnection(
                 // "Data Source=PC-20110101LQHV\\FIRSTDATABASE;Initial Catalog=BBS;Trusted_Connection=yes"
-                "server=.;database=OLSHOP;user=sa;pwd=Hhhhhh123456"
+                "server=123.206.103.58;database=OLSHOP;user=sa;pwd=Hhhhhh123456"
                 );
         }
         public DataSet GetDataSet(String SqlString)
