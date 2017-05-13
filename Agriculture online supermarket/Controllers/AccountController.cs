@@ -507,19 +507,31 @@ namespace Agriculture_online_supermarket.Controllers
         public ActionResult UserInfo()
         {
             //获得用户ID
+            string id= (string)Session["id"];
+
             //获得用户信息,填model
             return View();//View(Model model)
         }
         public ActionResult Balance()
         {
             //获得用户ID
+            string id = (string)Session["id"];
+            //double Balance = getBalace(id);
             //获得账户余额，填充model
+            BalanceModel model=new BalanceModel();
+            model.Balance = 10;// Balace;
+
             return View();//View(model)
         }
         public ActionResult DeleteAccount(/*string UserId*/)
         {
             //检查是否管理员
+            if (needRedirect())
+            {
+                return redirectAction;
+            } 
             //删除帐号
+            //
             return RedirectToAction("AdminIndex");
         }
         public ActionResult ManageAccountInfo(/*string UserId*/)

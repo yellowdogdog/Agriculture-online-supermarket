@@ -150,4 +150,9 @@ namespace Agriculture_online_supermarket.Models
         [Display(Name = "电子邮件")]
         public string Email { get; set; }
     }
+
+    public class BalanceModel
+    {
+        public double Balance { get; set; }
+    }
 }
