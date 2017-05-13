@@ -127,7 +127,8 @@ namespace Agriculture_online_supermarket.Controllers
                     Session.Add("state", STATE_CUSTOMER);
                     Session.Add("id", model.UserID);
                     Session.Add("name", name);
-                    return RedirectToLocal(returnUrl);
+                //TODO return RedirectToLocal(returnUrl);
+                    return  RedirectToAction("Index", "Customer");
                 case 2:
                     Session.Add("state", STATE_SELLER);
                     Session.Add("id", model.UserID);

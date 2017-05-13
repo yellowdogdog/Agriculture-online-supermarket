@@ -17,7 +17,7 @@ namespace Agriculture_online_supermarket.Persistent
         public static SqlConnection DBCon()
         {
             return new SqlConnection(
-               // "server=.;database=OLSHOP;user=sa;pwd=Hhhhhh123456"
+               "server=123.206.103.58;database=OLSHOP;user=sa;pwd=Hhhhhh123456"
                 );
         }
         public DataSet GetDataSet(String SqlString)
@@ -116,7 +116,7 @@ namespace Agriculture_online_supermarket.Persistent
             SqlCommand comm = new SqlCommand(SqlString, conn);
             return Convert.ToInt32(comm.ExecuteScalar());
         }
-        static Boolean CustomerRegisterInsert(string CustomerId,
+        public static Boolean CustomerRegisterInsert(string CustomerId,
                                          string passwordMD5,//密码加密后的MD5
                                          string name, //昵称
                                          string address,
@@ -196,7 +196,7 @@ namespace Agriculture_online_supermarket.Persistent
                     }
                     else
                     {//Admin user name exist
-                        sqllogin = "Select * from db_Manager where MngID='" + UserId + "' and MngPSW=‘" + MD5password + "'";
+                        sqllogin = "Select * from db_Manager where MngID='" + UserId + "' and MngPSW='" + MD5password + "'";
                         DataRow dr = db.GetDataRow(sqllogin);
                         if (dr != null)
                         {
@@ -211,7 +211,7 @@ namespace Agriculture_online_supermarket.Persistent
                 }
                 else
                 {//Seller user name exist
-                    sqllogin = "Select * from db_Shop where ShpID='" + UserId + "' and ShpPSW=‘" + MD5password + "'";
+                    sqllogin = "Select * from db_Shop where ShpID='" + UserId + "' and ShpPSW='" + MD5password + "'";
                     DataRow dr = db.GetDataRow(sqllogin);
                     if (dr != null)
                     {
@@ -226,7 +226,7 @@ namespace Agriculture_online_supermarket.Persistent
             }
             else
             {//Customer user name exist
-                sqllogin = "Select ShperName from db_Shopper where ShperID='" + UserId + "' and ShperPSW=‘" + MD5password + "'"; 
+                sqllogin = "Select ShperName from db_Shopper where ShperID='" + UserId + "' and ShperPSW='" + MD5password + "'"; 
                 DataRow dr = db.GetDataRow(sqllogin);
                 if (dr != null)
                 {
