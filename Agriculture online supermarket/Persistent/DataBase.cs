@@ -17,8 +17,8 @@ namespace Agriculture_online_supermarket.Persistent
         public static SqlConnection DBCon()
         {
             return new SqlConnection(
-                 "Data Source=PC-20110101LQHV\\FIRSTDATABASE;Initial Catalog=BBS;Trusted_Connection=yes"
-               // "server=.;database=OLSHOP;user=sa;pwd=Hhhhhh123456"
+                // "Data Source=PC-20110101LQHV\\FIRSTDATABASE;Initial Catalog=BBS;Trusted_Connection=yes"
+                "server=123.206.103.58;database=OLSHOP;user=sa;pwd=Hhhhhh123456"
                 );
         }
         public DataSet GetDataSet(String SqlString)
@@ -117,7 +117,7 @@ namespace Agriculture_online_supermarket.Persistent
             SqlCommand comm = new SqlCommand(SqlString, conn);
             return Convert.ToInt32(comm.ExecuteScalar());
         }
-        static Boolean CustomerRegisterInsert(string CustomerId,
+        public static Boolean CustomerRegisterInsert(string CustomerId,
                                          string passwordMD5,//密码加密后的MD5
                                          string name, //昵称
                                          string address,
@@ -180,15 +180,15 @@ namespace Agriculture_online_supermarket.Persistent
             DataBase db = new DataBase();
             string sqlcheck = "";
             string sqllogin = "";
-            sqlcheck = "Select Count(*) from db_Shopper where ShperID='" + UserId + "'";
+            sqlcheck = "Select * from db_Shopper where ShperID='" + UserId + "'";
             int exist = db.Count(sqlcheck);
             if (exist == 0)
             {
-                sqlcheck = "Select Count(*) from db_Shop where ShpID='" + UserId + "'";
+                sqlcheck = "Select * from db_Shop where ShpID='" + UserId + "'";
                 exist = db.Count(sqlcheck);
                 if (exist == 0)
                 {
-                    sqlcheck = "Select Count(*) from db_Manager where MngID='" + UserId + "'";
+                    sqlcheck = "Select * from db_Manager where MngID='" + UserId + "'";
                     exist = db.Count(sqlcheck);
                     if (exist == 0)
                     {
@@ -270,9 +270,7 @@ namespace Agriculture_online_supermarket.Persistent
             List<IndexModel> tmp = new List<IndexModel>();
             DataBase db = new DataBase();
             string sql = "";
-            if (keyword.Length == 0) sql = "Select * from db_Commodity";
-            else 
-            sql = "Select * from db_Commodity   where CmdName like" + "'%" + keyword + "%'";
+            sql = "Select * from db_Commodity   where CmdName=" + "'" + keyword + "'";
             DataSet ds = db.GetDataSet(sql);
             foreach (DataRow dr in ds.Tables[0].Rows)
             {
@@ -303,41 +301,5 @@ namespace Agriculture_online_supermarket.Persistent
 
              }*/
         }
-        public DataSet GetAllCmdInfo(string ShpID)
-        {
-            string sql = "select * from db_Commodity WHere ShpID like%'"+ShpID+"%'";
-            DataBase db = new DataBase();
-            DataSet ds= db.GetDataSet(sql);
-            return ds;
-            //获得该卖家的所有商品信息
-        }
-
-        public DataSet GetCmdInfo(string CmdID, string ShpID)
-        {
-            string sql = "select * from db_Commodity WHere ShpID like %'" + ShpID 
-                                    + "%' and CmdID like %" + CmdID + "%'"; ;
-            DataBase db = new DataBase();
-            DataSet ds = db.GetDataSet(sql);
-            return ds;
-            //根据商品ID返回该商品信息
-        }
-
-        public DataSet GetAllIdtInfo(string ShpID)
-        {
-            string sql = "select * from db_Indent WHere ShpID='" + ShpID+"'"; ;
-            DataBase db = new DataBase();
-            DataSet ds = db.GetDataSet(sql);
-            return ds;
-            //获得该卖家的所有订单信息
-        }
-        public DataSet GetIdtInfo(string IdtID)
-        {
-            string sql = "select * from db_Indent WHere IdtID=" + IdtID ; ;
-            DataBase db = new DataBase();
-            DataSet ds = db.GetDataSet(sql);
-            return ds;
-            //获得该订单ID的所有信息
-        }
-
     }
 }
