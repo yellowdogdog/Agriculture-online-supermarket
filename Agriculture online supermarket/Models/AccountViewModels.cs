@@ -150,9 +150,28 @@ namespace Agriculture_online_supermarket.Models
         [Display(Name = "电子邮件")]
         public string Email { get; set; }
     }
-
+    
     public class BalanceModel
     {
         public double Balance { get; set; }
+    }
+
+    public class UserinfoModel
+    {   //信息修改界面
+        string ID { get; set; }//用户ID
+        string name { get; set; }//昵称
+        string passward { get; set; }//密码
+        string adress { get; set; }//地址
+        string phoneNumber { get; set; }//电话号码
+        double  balance { get; set; }//账户余额
+        public UserinfoModel(string ID,string name,string passward,string adress, string phoneNumber, double balance)
+        {
+            this.ID = ID;
+            this.name = name;
+            this.passward = passward;
+            this.adress = adress;
+            this.phoneNumber = phoneNumber;
+            this.balance = balance;
+        }
     }
 }

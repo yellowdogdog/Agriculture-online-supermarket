@@ -507,21 +507,23 @@ namespace Agriculture_online_supermarket.Controllers
         public ActionResult UserInfo()
         {
             //获得用户ID
-            string id= (string)Session["id"];
+            string UserId = (string)Session["id"];
 
             //获得用户信息,填model
-            return View();//View(Model model)
+            UserinfoModel model = new UserinfoModel(null,null,null,null,null,0);
+            //model = getUserInfo(UserId);
+            return View(model);//View(Model model)
         }
         public ActionResult Balance()
         {
             //获得用户ID
-            string id = (string)Session["id"];
-            //double Balance = getBalace(id);
+            string UserId = (string)Session["id"];
+            //double Balance = getBalace(UserId);
             //获得账户余额，填充model
-            BalanceModel model=new BalanceModel();
-            model.Balance = 10;// Balace;
+            BalanceModel model =new BalanceModel();
+            //model.Balance = Balace;
 
-            return View();//View(model)
+            return View(model);//View(model)
         }
         public ActionResult DeleteAccount(/*string UserId*/)
         {
@@ -531,31 +533,41 @@ namespace Agriculture_online_supermarket.Controllers
                 return redirectAction;
             } 
             //删除帐号
-            //
+            //deleteAccount(string UserId);
             return RedirectToAction("AdminIndex");
         }
         public ActionResult ManageAccountInfo(/*string UserId*/)
         {
             //检查是否管理员
+            if (needRedirect())
+            {
+                return redirectAction;
+            }
             //找到用户信息，填写model
-            return View("UserInfo");//View(models)
+            UserinfoModel model = new UserinfoModel(null, null, null, null, null, 0);
+            //model = getUserInfo(UserId);
+            return View("UserInfo",model);//View(models)
         }
-        public ActionResult SaveAccountInfo(/*Model model*/)
+        public ActionResult SaveAccountInfo(/*UserinfoModel model*/)
         {
-            //寸用户信息
-            
+            //存用户信息
+            //saveAccountInfo(model);
             return RedirectToLocal(ViewBag.ReturnUrl);
         }
         public ActionResult Pay(/*double Money*/)
         {
             //获得用户ID
+            string UserId = (string)Session["id"];
             //修改余额
+            //payBalance(UserId,Money);
             return RedirectToAction("UserInfo");
         }
         public ActionResult Refund(/*double Money*/)
         {
             //获得用户ID
+            string UserId = (string)Session["id"];
             //修改余额
+            //refundBalance(UserId,Money);
             return RedirectToAction("UserInfo");
         }
         private bool needRedirect()
