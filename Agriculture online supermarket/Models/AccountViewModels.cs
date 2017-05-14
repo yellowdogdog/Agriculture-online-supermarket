@@ -158,12 +158,12 @@ namespace Agriculture_online_supermarket.Models
 
     public class UserinfoModel
     {   //信息修改界面
-        string ID { get; set; }//用户ID
-        string name { get; set; }//昵称
-        string passward { get; set; }//密码
-        string adress { get; set; }//地址
-        string phoneNumber { get; set; }//电话号码
-        double  balance { get; set; }//账户余额
+        public string ID { get; set; }//用户ID
+        public string name { get; set; }//昵称
+        public string passward { get; set; }//密码
+        public string adress { get; set; }//地址
+        public string phoneNumber { get; set; }//电话号码
+        public double  balance { get; set; }//账户余额
         public UserinfoModel(string ID,string name,string passward,string adress, string phoneNumber, double balance)
         {
             this.ID = ID;
