@@ -1,0 +1,130 @@
+/* CSS Document */
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+input,
+button,
+textarea,
+blockquote,
+th,
+td,
+p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: #1a1a1a;
+    background: #fff;
+}
+
+body,
+input,
+textarea {
+    font-size: 15px;
+    font-family: "Microsoft YaHei", 微软雅黑, "MicrosoftJhengHei", 华文细黑, STHeiti, MingLiu;
+}
+
+input,
+button,
+select,
+textarea {
+    outline: none;
+}
+.cart{
+	
+	
+	align-content:center;
+	height:20px;}
+.goods-info {
+	width: 800px;
+	height: 350px;
+	float: right;
+}
+
+.good-name {
+	font-size: 30px;
+	color: #333;
+	height: 40px;
+	padding-left: 10px;
+}
+
+.good-desc {
+	font-size: 18px;
+	color: #999;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 10px;
+}
+
+.price-view {
+	width: 100%;
+	margin-top: 40px;
+	height: 76px;
+	line-height: 76px;
+	color: #999;
+	font-size: 18px;
+	background: #f8f8f8;
+	padding-left: 10px;
+	display: inline-block;
+}
+
+.price-view p {
+	width: 50px;
+	font-size: 16px;
+	float: left;
+}
+
+.price {
+	width: 250px;
+	color: #f96d16;
+	text-align: left;
+	float: left;
+}
+
+.price span {
+	font-size: 28px;
+}
+
+.price .market-price {
+	color: #999;
+	font-size: 18px;
+	text-decoration: line-through;
+}
+.txtright{
+	height:35px;
+	align:center;
+	
+	}
+	
+.order{
+	height:35px;
+	}
+	
+.ordermoretotal{
+	height:35px;
+	}
+	
+	
+.ordermoretxt{
+	font-family:sans-serif, 宋体;
+	height:35px;
+	}
+	
