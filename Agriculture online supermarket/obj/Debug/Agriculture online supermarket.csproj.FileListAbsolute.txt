@@ -86,3 +86,91 @@ D:\learn\software\Agriculture online supermarket\Agriculture online supermarket\
 D:\learn\software\Agriculture online supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.csprojResolveAssemblyReference.cache
 D:\learn\software\Agriculture online supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.dll
 D:\learn\software\Agriculture online supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.pdb
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.csprojResolveAssemblyReference.cache
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.pdb
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\csc.exe
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\System.Collections.Immutable.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\System.Reflection.Metadata.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\vbc.exe
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\VBCSCompiler.exe
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\roslyn\VBCSCompiler.exe.config
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Agriculture online supermarket.dll.config
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Agriculture online supermarket.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Agriculture online supermarket.pdb
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Antlr3.Runtime.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\EntityFramework.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\EntityFramework.SqlServer.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.AspNet.Identity.Core.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.Cookies.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.Facebook.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.Google.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.OAuth.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.Twitter.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Web.Infrastructure.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Newtonsoft.Json.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Owin.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.Helpers.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.Mvc.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.Optimization.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.Razor.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.WebPages.Deployment.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.WebPages.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.WebPages.Razor.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\WebGrease.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.Helpers.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.Mvc.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.Optimization.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.Razor.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.WebPages.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.WebPages.Deployment.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\System.Web.WebPages.Razor.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Antlr3.Runtime.pdb
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Newtonsoft.Json.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\EntityFramework.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\EntityFramework.SqlServer.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.AspNet.Identity.Core.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.Facebook.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.Cookies.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.OAuth.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.Google.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.Twitter.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\System.Web.Helpers.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\System.Web.Mvc.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\System.Web.Optimization.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\System.Web.Razor.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\System.Web.WebPages.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\EntityFramework.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.AspNet.Identity.Owin.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.Owin.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.Owin.Host.SystemWeb.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.Owin.Security.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.Owin.Security.Facebook.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.Owin.Security.Google.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.Owin.Security.Twitter.resources.dll
+D:\learn\software\Agriculture online supermarket\Agriculture-online-supermarket\Agriculture online supermarket\bin\zh-Hans\Microsoft.Owin.Security.MicrosoftAccount.resources.dll

@@ -177,8 +177,9 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomerViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Content\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\SellerViewModels.cs" />
     <Compile Include="Persistent\DataBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

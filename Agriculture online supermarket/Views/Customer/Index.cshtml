@@ -65,18 +65,65 @@
         <form class="form-horizontal">
           <div class="form-group">
             <label for="location1" class="control-label">
-                @Html.ActionLink("青菜","Search","Customer",new { @SearchContent="青菜"},null)
+                蔬菜
             </label>
+              <br>
+              <div class="col-lg-10 col-md-8 col-md-offset-3 col-lg-offset-0">
+                  @Html.ActionLink("青菜", "Search", "Customer", new { @SearchContent = "青菜" }, null)
+                  @Html.ActionLink("萝卜", "Search", "Customer", new { @SearchContent = "萝卜" }, null)
+                  @Html.ActionLink("茄子", "Search", "Customer", new { @SearchContent = "茄子" }, null)
+                  @Html.ActionLink("菠菜", "Search", "Customer", new { @SearchContent = "菠菜" }, null)
+                  @Html.ActionLink("玉米", "Search", "Customer", new { @SearchContent = "玉米" }, null)
+                  <br >
+                  @Html.ActionLink("黄瓜", "Search", "Customer", new { @SearchContent = "黄瓜" }, null)
+                  @Html.ActionLink("番茄", "Search", "Customer", new { @SearchContent = "番茄" }, null)
+              </div>
+              <br>
 </div>
           <div class="form-group">
-            <label for="type1" class="control-label">Type</label>
+            <label for="type1" class="control-label">
+                荤菜
+            </label>
+              <br>
+              <div class="col-lg-10 col-md-8 col-md-offset-3 col-lg-offset-0">
+                  @Html.ActionLink("鸡肉", "Search", "Customer", new { @SearchContent = "鸡" }, null)
+                  @Html.ActionLink("牛肉", "Search", "Customer", new { @SearchContent = "牛" }, null)
+                  @Html.ActionLink("羊肉", "Search", "Customer", new { @SearchContent = "羊" }, null)
+                  @Html.ActionLink("鸭肉", "Search", "Customer", new { @SearchContent = "鸭" }, null)
+                  @Html.ActionLink("猪肉", "Search", "Customer", new { @SearchContent = "猪" }, null)
+                  <br>
+                  @Html.ActionLink("鸡蛋", "Search", "Customer", new { @SearchContent = "蛋" }, null)
+                  @Html.ActionLink("鱼肉", "Search", "Customer", new { @SearchContent = "鱼" }, null)
+              </div>
+              <br>
 </div>
           <div class="form-group">
-            <label for="pricefrom" class="control-label">Price From</label>
+            <label for="pricefrom" class="control-label">
+                水果
+            </label>
+              <br>
+              <div class="col-lg-10 col-md-8 col-md-offset-3 col-lg-offset-0">
+                  @Html.ActionLink("苹果", "Search", "Customer", new { @SearchContent = "苹果" }, null)
+                  @Html.ActionLink("香蕉", "Search", "Customer", new { @SearchContent = "香蕉" }, null)
+                  @Html.ActionLink("梨", "Search", "Customer", new { @SearchContent = "梨" }, null)
+                  @Html.ActionLink("火龙果", "Search", "Customer", new { @SearchContent = "火龙果" }, null)
+                  @Html.ActionLink("葡萄", "Search", "Customer", new { @SearchContent = "葡萄" }, null)
+                  <br>
+                  @Html.ActionLink("橘子", "Search", "Customer", new { @SearchContent = "橘子" }, null)
+                  @Html.ActionLink("榴莲", "Search", "Customer", new { @SearchContent = "榴莲" }, null)
+              </div>
+              <br>
 </div>
           <div class="form-group">
-            <label for="priceto" class="control-label">Price To</label>
-            <div class="input-group"> </div>
+            <label for="priceto" class="control-label">粮食</label>
+              <br>
+              <div class="col-lg-10 col-md-8 col-md-offset-3 col-lg-offset-0">
+                  @Html.ActionLink("大米", "Search", "Customer", new { @SearchContent = "米" }, null)
+                  @Html.ActionLink("小麦", "Search", "Customer", new { @SearchContent = "小麦" }, null)
+                  @Html.ActionLink("荞麦", "Search", "Customer", new { @SearchContent = "荞麦" }, null)
+                  
+              </div>
+              <br>
           </div>
 </form>
       </div>
