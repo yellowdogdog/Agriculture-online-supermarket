@@ -86,3 +86,6 @@ D:\learn\software\Agriculture online supermarket\Agriculture online supermarket\
 D:\learn\software\Agriculture online supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.csprojResolveAssemblyReference.cache
 D:\learn\software\Agriculture online supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.dll
 D:\learn\software\Agriculture online supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.pdb
+C:\Users\Godphone\Personal\GitHub\Agriculture-online-supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.csprojResolveAssemblyReference.cache
+C:\Users\Godphone\Personal\GitHub\Agriculture-online-supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.dll
+C:\Users\Godphone\Personal\GitHub\Agriculture-online-supermarket\Agriculture online supermarket\obj\Debug\Agriculture online supermarket.pdb
