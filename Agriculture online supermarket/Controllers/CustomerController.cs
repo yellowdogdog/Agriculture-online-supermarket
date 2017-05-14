@@ -75,7 +75,7 @@ namespace Agriculture_online_supermarket.Controllers
         }
 
 
-        public ActionResult AddToShoppingCart(/*String productId)
+        public ActionResult AddToShoppingCart(/*String productId*/)
         {
             //检查登入状态
             //添加购物车操作
@@ -85,7 +85,13 @@ namespace Agriculture_online_supermarket.Controllers
         {
             //检查登入状态
             // 填充模型
-            return View("Cashier");//View("Cashier" model) 结算时显示清单
+            //debug use
+            List<CashierViewModel> models = new List<CashierViewModel>();
+            CashierViewModel model = new CashierViewModel("1", "茄子", 5.2, 2);
+            models.Add(model);
+            model = new CashierViewModel("2", "草莓", 2.58, 10);
+            models.Add(model);
+            return View("Cashier",models);//View("Cashier" model) 结算时显示清单
         }
         public ActionResult PurchaseAll()
         {

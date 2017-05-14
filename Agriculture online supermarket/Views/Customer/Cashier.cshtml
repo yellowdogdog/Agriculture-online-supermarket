@@ -2,7 +2,60 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "收银台";
 }
+@model List<Agriculture_online_supermarket.Models.CashierViewModel>
 <h2>收银台</h2>
 
 @Html.ActionLink("提交", "SubmitOrder", "Customer")
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 col-md-12">
+            <div class="row">
+
+
+                <div class="caption">
+                    <h3 class="col-md-11">结账</h3>
+                    <div class="cartdetail col-md-2">
+                        <p> 商品</p>
+                    </div>
+                    <div class="cartdetail col-md-2">
+
+                    </div>
+
+                    <div class="cartprice col-md-2 col-md-offset-0"><p>单价</p></div>
+                    <div class="cartnum col-md-2"><p>数量</p></div>
+                    <div class="total col-md-3"><p>总额</p></div>
+                    @{ 
+                        double total = 0;
+                    }
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        total += Model[i].unitprice * Model[i].productnum;
+                        <div class="cartdetail col-md-2">
+                            <p><a href="Detail/@Html.Raw(Model[i].productid)">@Html.DisplayFor(modelitem => Model[i].productname)</a></p>
+                        </div><div class="cartdetail col-md-2">
+
+                        </div>
+
+                        <div class="cartprice col-md-2 col-md-offset-0">
+                            <p>￥@Html.DisplayFor(modelitem=>Model[i].unitprice)</p>
+                        </div>
+                        <div class="cartnum col-md-2">
+                            <p>@Html.DisplayFor(modelitem => Model[i].productnum)</p>
+                        </div>
+                        <div class="total col-md-3"><p>@Html.Raw( Model[i].unitprice * Model[i].productnum)</p></div>
+                        <hr>
+                    }
+                    
+
+                </div>
+
+            </div>
+            <div class="caption">
+                <p class="text-center"><a href="#" class="btn btn-success" role="button">结账:￥@Html.DisplayFor(modelitem => total)</a></p>
+            </div>
+        </div>
+
+        <div class="row"> </div>
+    </div>
+</div>
 

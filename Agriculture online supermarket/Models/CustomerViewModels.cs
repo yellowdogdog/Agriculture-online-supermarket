@@ -31,4 +31,32 @@
         public IndexModel() { }
         
     }
+    public class CashierViewModel
+    {
+        public string productid
+        {
+            get; set;
+        }
+        public string productname
+        {
+            get; set;
+        }
+        public double unitprice
+        {
+            get; set;
+        }
+        public int productnum
+        {
+            get; set;
+        }
+        public CashierViewModel(string productid,string productname,double unitprice,int productnum)
+        {
+            this.productid = productid;
+            this.productname = productname;
+            this.unitprice = unitprice;
+            this.productnum = productnum;
+        }
+        public CashierViewModel() { }
+        
+    }
 }
