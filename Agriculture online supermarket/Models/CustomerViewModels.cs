@@ -143,7 +143,7 @@ namespace Agriculture_online_supermarket.Models
     {
 
         /// <summary>
-        /// 买家用户名
+        /// 卖家用户名
         /// </summary>
         public string username
         {
@@ -216,6 +216,7 @@ namespace Agriculture_online_supermarket.Models
             this.orderStatus = orderStatus;
             this.orderDate = orderDate;
             this.TotalMoney = TotalMoney;
+            this.LogisticsNo = LogisticsNo;
         }
 
     }

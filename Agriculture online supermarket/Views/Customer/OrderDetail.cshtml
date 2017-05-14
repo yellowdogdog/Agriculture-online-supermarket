@@ -2,8 +2,79 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "订单详情";
 }
+@model Agriculture_online_supermarket.Models.CustomerOrderViewModel
 <h2>订单详情</h2>
 
 @Html.ActionLink("返回", "Orders", "Customer")
+
+<div class="container">
+    <div align="left">
+        <h3>订单详情：</h3>
+    </div>
+    <section>
+
+        <div class="ordermoretotal col-md-2">
+            <p>商品名:</p>
+        </div>
+        <div class="ordermoretotal col-md-4 ">
+            <p>@Html.DisplayFor(modelitem => Model.productName)</p>
+        </div>
+        <div class="ordermoretotal col-md-5 ">
+            <p></p>
+        </div>
+
+
+        <div class="ordermoretotal col-md-2"><p>总额:</p></div>
+        <div class="ordermoretotal col-md-4 ">
+            <p>￥@Html.DisplayFor(modelitem => Model.TotalMoney)</p>
+        </div>
+        <div class="ordermoretotal col-md-5 ">
+            <p></p>
+        </div>
+
+
+        <div class="ordermoretotal col-md-2"><p>份数:</p></div>
+        <div class="ordermoretotal col-md-4 ">
+            <p>@Html.DisplayFor(modelitem => Model.productNum)</p>
+        </div>
+        <div class="ordermoretotal col-md-5 ">
+            <p></p>
+        </div>
+
+
+        <div class="ordermoretotal col-md-2"><p>卖家:</p></div>
+        <div class="ordermoretotal col-md-4 ">
+            <p>@Html.DisplayFor(modelitem => Model.username)</p>
+        </div>
+        <div class="ordermoretotal col-md-5 ">
+            <p></p>
+        </div>
+
+
+        <div class="ordermoretotal  col-md-2"><p>物流编号:</p></div>
+        <div class="ordermoretotal col-md-4 ">
+            <p>@Html.DisplayFor(modelitem => Model.LogisticsNo)</p>
+        </div>
+        <div class="ordermoretotal col-md-5 ">
+            <p></p>
+        </div>
+
+
+        <div class="ordermoretotal  col-md-11"><p class="text-left"><a href="#" class="btn btn-success" role="button">退货</a></p></div>
+
+
+
+
+    </section>
+    <hr>
+    <hr>
+    <hr>
+    <div class="ordermoretotal col-md-11 ">
+        <p></p>
+    </div>
+    <div class="ordermoretotal col-md-11 ">
+        <p></p>
+    </div>
+</div>
 
 
