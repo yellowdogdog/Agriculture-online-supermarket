@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Agriculture_online_supermarket.Models
 {
@@ -134,7 +135,105 @@ namespace Agriculture_online_supermarket.Models
         }
 
     }
+    /// <summary>
+    /// 买家订单详情模型
+    /// </summary>
+    public class CustomerOrderDetailModel
+    {
+        public string IdtID { set; get; }//订单号ID
+        public string CmdName { set; get; }//商品名称
+        public string ShperName { set; get; }//买家昵称
+        public string LogisticsID { set; get; }//物流单号
+        public int IdtNum { set; get; }//订单数量
+        public string IdtStatus { set; get; }//订单状态
+        public DateTime IdtDate { set; get; }//订单日期
+        public double IdtTP { set; get; }//订单总价
 
+    }
+    public class CustomerShoppingcartModle
+    {
+        public string username
+        {
+            get; set;
+        }
+
+        [Required(ErrorMessage = "收货地址必须填")]
+        public string address
+        {
+            get; set;
+        }
+        public string productId
+        {
+            get; set;
+        }
+
+        public string productName
+        {
+            get; set;
+        }
+
+
+        public string productInfo
+        {
+            get; set;
+        }
+        /// <summary>
+        /// 货物数量 IdtNum
+        /// </summary>
+        public double productNum
+        {
+            get; set;
+        }
+        /// <summary>
+        /// 商品库存
+        /// </summary>
+        public double Inventory
+        {
+            get; set;
+        }
+        /// <summary>
+        /// 计价单位 CmdUnit
+        /// </summary>
+        public string unit
+        {
+            get; set;
+        }
+        /// <summary>
+        /// 商品单价 UP
+        /// </summary>
+        public double unitPrice
+        {
+            get; set;
+        }
+        public double TotalMoney
+        {
+            set; get;
+        }
+        /// <summary>
+        /// 商品图片路径
+        /// </summary>
+        public string imagePath
+        {
+            set; get;
+        }
+        public CustomerShoppingcartModle(string username, string address, string productId, string productName, string productInfo, double productNum, double Inventory, string unit, double unitPrice, double TotalMoney, string imagePath)
+        {
+            this.username = username;
+            this.address = address;
+            this.productId = productId;
+            this.productInfo = productInfo;
+            this.productName = productName;
+            this.productNum = productNum;
+            this.imagePath = imagePath;
+            this.Inventory = Inventory;
+            this.unit = unit;
+            this.unitPrice = unitPrice;
+            this.TotalMoney = TotalMoney;
+        }
+        public CustomerShoppingcartModle()
+        {
+        }
+    }
 
     /// <summary>
     /// 买家订单模型

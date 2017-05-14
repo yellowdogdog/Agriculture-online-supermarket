@@ -191,6 +191,7 @@
     <Content Include="Content\images\indexhead2.png" />
     <Content Include="Content\images\indexhead3.png" />
     <Content Include="Content\images\productimage\vegetable1.png" />
+    <Content Include="Content\my.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

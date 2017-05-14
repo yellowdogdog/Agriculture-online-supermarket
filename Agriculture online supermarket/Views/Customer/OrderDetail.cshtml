@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "订单详情";
 }
-@model Agriculture_online_supermarket.Models.CustomerOrderViewModel
+@model Agriculture_online_supermarket.Models.CustomerOrderDetailModel
 <h2>订单详情</h2>
 
 @Html.ActionLink("返回", "Orders", "Customer")
@@ -17,7 +17,7 @@
             <p>商品名:</p>
         </div>
         <div class="ordermoretotal col-md-4 ">
-            <p>@Html.DisplayFor(modelitem => Model.productName)</p>
+            <p>@Html.DisplayFor(modelitem => Model.CmdName)</p>
         </div>
         <div class="ordermoretotal col-md-5 ">
             <p></p>
@@ -26,7 +26,7 @@
 
         <div class="ordermoretotal col-md-2"><p>总额:</p></div>
         <div class="ordermoretotal col-md-4 ">
-            <p>￥@Html.DisplayFor(modelitem => Model.TotalMoney)</p>
+            <p>￥@Html.DisplayFor(modelitem => Model.IdtTP)</p>
         </div>
         <div class="ordermoretotal col-md-5 ">
             <p></p>
@@ -35,7 +35,7 @@
 
         <div class="ordermoretotal col-md-2"><p>份数:</p></div>
         <div class="ordermoretotal col-md-4 ">
-            <p>@Html.DisplayFor(modelitem => Model.productNum)</p>
+            <p>@Html.DisplayFor(modelitem => Model.IdtNum)</p>
         </div>
         <div class="ordermoretotal col-md-5 ">
             <p></p>
@@ -44,7 +44,7 @@
 
         <div class="ordermoretotal col-md-2"><p>卖家:</p></div>
         <div class="ordermoretotal col-md-4 ">
-            <p>@Html.DisplayFor(modelitem => Model.username)</p>
+            <p>@Html.DisplayFor(modelitem => Model.ShperName)</p>
         </div>
         <div class="ordermoretotal col-md-5 ">
             <p></p>
@@ -53,7 +53,7 @@
 
         <div class="ordermoretotal  col-md-2"><p>物流编号:</p></div>
         <div class="ordermoretotal col-md-4 ">
-            <p>@Html.DisplayFor(modelitem => Model.LogisticsNo)</p>
+            <p>@Html.DisplayFor(modelitem => Model.LogisticsID)</p>
         </div>
         <div class="ordermoretotal col-md-5 ">
             <p></p>
