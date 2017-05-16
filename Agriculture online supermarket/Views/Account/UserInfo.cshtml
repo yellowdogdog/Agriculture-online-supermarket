@@ -1,8 +1,61 @@
-﻿@{
+﻿@model Agriculture_online_supermarket.Models.UserinfoModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "信息修改";
 }
 <h2>信息修改</h2>
-@Html.ActionLink("充值/取款", "Balance", "Account")
-@Html.ActionLink("保存","SaveAccountInfo","Account")
+@using (Html.BeginForm("UserInfo", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>我的信息</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="col-md-2 control-label">用户名</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.ID, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">密码</label>
+        <div class="col-md-10">
+            @Html.PasswordFor(m => m.passward, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">昵称</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">电话</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.phoneNumber, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">地址</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.adress, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">余额</label>
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.balance, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("充值/取款", "Balance", "Account")
+            @Html.ActionLink("保存", "SaveAccountInfo", "Account")
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
 

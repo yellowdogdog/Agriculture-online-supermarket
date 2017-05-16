@@ -1,8 +1,34 @@
-﻿@{
+﻿@model Agriculture_online_supermarket.Models.BalanceModel
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "充值/取款";
 }
 <h2>充值/取款</h2>
-@Html.ActionLink("充值", "Pay", "Account")
-@Html.ActionLink("提现", "Refund", "Account")
+<div class="row">
+    <div class="col-md-8">
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+            @Html.AntiForgeryToken()
+            <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    <label class="col-md-2 control-label">充值金额</label>
+                    <div class="col-md-10">
+                        @Html.TextBox("reAmount", null, new { @class = "form-control" })
+                        <input type="submit" value="充值" class="btn btn-default" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 control-label">取款金额</label>
+                    <div class="col-md-10">
+                        @Html.Password("wdAmount", null, new { @class = "form-control" })
+                        <input type="submit" value="提现" class="btn btn-default" />
+                    </div>
+                </div>
+                @*@Html.ActionLink("充值", "Pay", "Account")
+                    @Html.ActionLink("提现", "Refund", "Account")*@
+        }
+    </div>
+</div>
+
 
