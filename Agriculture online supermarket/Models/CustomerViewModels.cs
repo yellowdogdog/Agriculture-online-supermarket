@@ -52,8 +52,20 @@ namespace Agriculture_online_supermarket.Models
         {
             get; set;
         }
+        public string OrderId
+        {
+            get; set;
+        }
         public CashierViewModel(string productid,string productname,double unitprice,int productnum)
         {
+            this.productid = productid;
+            this.productname = productname;
+            this.unitprice = unitprice;
+            this.productnum = productnum;
+        }
+        public CashierViewModel(string OrderId,string productid, string productname, double unitprice, int productnum)
+        {
+            this.OrderId = OrderId;
             this.productid = productid;
             this.productname = productname;
             this.unitprice = unitprice;

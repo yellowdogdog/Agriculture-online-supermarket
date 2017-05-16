@@ -127,6 +127,10 @@ namespace Agriculture_online_supermarket.Controllers
 
         }
 
+        /// <summary>
+        /// 以下为买家部分
+        /// </summary>
+        /// <returns></returns>
         public DataSet CustGetAllCmdInfo() //所有的商品以及其信息
         {
 
@@ -151,23 +155,20 @@ namespace Agriculture_online_supermarket.Controllers
         {
 
         }
-        public void AddShoppingCart(string username, string address, string productId, string productName, string productInfo, int productNum, string unit, double unitPrice, double TotalMoney)    //加入购物车表,,为什么没有表单号呢？自己生成？我数据多了点，你看看哪些可以不要，跟页面要协商。
+        public void AddShoppingCart(string username, string address, string productId, string productName, string productInfo, int productNum, string unit, double unitPrice, double TotalMoney)    //加入购物车表,即订单的第一次产生过程，请数据库为它自动生成订单号
         {
 
         }
-        public DataSet  GetShoppingCart(string CustID)// 得到用户ID为CustID的购物车内所有商品的string productid，string productname，double unitprice，int productnum请按照我的顺序
+        public DataSet  GetShoppingCart(string CustID)// 得到用户ID为CustID的购物车内所有商品的string OrderId,string productid，string productname，double unitprice，int productnum请按照我的顺序
         {
 
         }
-        public void UpdateCustOrder1(string productid, string status)//不知道为什么收银台就是没有订单号，所以你这边就直接用 商品号  去查找订单，然后改成的状态为status
+      
+        public void UpdateCustOrder(string OrderId, string status)//给你收银台的订单号，然后改成的状态为status
         {
 
         }
-        public void UpdateCustOrder2(string OrderId, string status)//这边还有这个就有订单号，我们先分开，然后再合并吧。
-        {
-
-        }
-        public void UpdateProductInfo(string productid, int productnum)//改变商品号为productid的库存，这边productnum是已经购买走的，所以直接库存 减 productnum
+        public void UpdateProductInfo(string OrederId,string productid, int productnum)//改变商品号为productid的库存，这边productnum是已经购买走的，所以直接库存 减 productnum
         {
 
         }
@@ -176,6 +177,10 @@ namespace Agriculture_online_supermarket.Controllers
 
         }
         public void UpdateShoppingCart(string OrderId, int cnum) // cnum表示买家对购物车内某个订单（OrderId）的商品数量进行加或者减，我在外面调好了正负，你直接加就行。
+        {
+
+        }
+        public void UpdateBalance(string OrederId)//这个这个说出来你可能不信，这个给你订单id，表明这个订单支付完成，现在需要你把他的买家卖家的余额都更新一下。
         {
 
         }

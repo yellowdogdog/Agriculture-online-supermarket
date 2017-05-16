@@ -168,7 +168,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataTable dt = ds1.Tables[0];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                CashierViewModel model = new CashierViewModel(dt.Rows[i][0].ToString(), dt.Rows[i][1].ToString(), Convert.ToDouble(dt.Rows[i][2]), Convert.ToInt32(dt.Rows[i][3]));
+                CashierViewModel model = new CashierViewModel(dt.Rows[i][0].ToString(),dt.Rows[i][1].ToString(), dt.Rows[i][2].ToString(), Convert.ToDouble(dt.Rows[i][3]), Convert.ToInt32(dt.Rows[i][4]));
                 models.Add(model);
             }
             return View("Cashier",models);//View("Cashier" model) 结算时显示清单
@@ -180,13 +180,14 @@ namespace Agriculture_online_supermarket.Controllers
             {
                 return redirectAction;
             }
-            //更新订单状态，更新库存，更新双方余额？？（假设直接到账）
+            //更新订单状态，更新库存，更新双方余额（假设直接到账）
             LinkToSQL sql = new LinkToSQL();
             int Cot = models.Count();
             foreach (CashierViewModel element in models) 
             {
-                sql.UpdateCustOrder(element.productid,"未收货");
-                sql.UpdateProductInfo(element.productid, element.productnum);
+                sql.UpdateCustOrder(element.OrderId,"待发货");
+                sql.UpdateProductInfo(element.OrderId,element.productid, element.productnum);
+                sql.UpdateBalance(element.OrderId);
             }
 
             
