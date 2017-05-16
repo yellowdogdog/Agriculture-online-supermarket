@@ -114,7 +114,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataTable dt = ds1.Tables[0];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                IndexModel model = new IndexModel(dt.Rows[i][0].ToString(), Convert.ToDouble(dt.Rows[i][1]), dt.Rows[i][2].ToString(), dt.Rows[i][3].ToString(), dt.Rows[i][4].ToString());
+                IndexModel model = new IndexModel(dt.Rows[i]["CmdName"].ToString(), Convert.ToDouble(dt.Rows[i]["CmdUP"]), "/Content/images/productimage/vegetable1.png",dt.Rows[i]["ShpID"].ToString(), dt.Rows[i]["CmdID"].ToString());
                 models.Add(model);
             }
             return View("Index", models); // 搜索结果
@@ -131,7 +131,7 @@ namespace Agriculture_online_supermarket.Controllers
             }
             //添加购物车操作
             LinkToSQL sql = new LinkToSQL();
-            sql.AddShoppingCart(ShopC.username, ShopC.address, ShopC.productId, ShopC.productName, ShopC.productInfo, ShopC.productNum,  ShopC.unit, ShopC.unitPrice, ShopC.TotalMoney);
+            sql.AddShoppingCart(ShopC.userId,ShopC.sellerId, ShopC.productId, ShopC.productNum,"购物车", DateTime.Now.ToLocalTime(),ShopC.TotalMoney);
             return RedirectToAction("ShoppingCart");
         }
         public ActionResult Purchase(/*string ProductId 假设，只买了1个*/)
@@ -186,7 +186,7 @@ namespace Agriculture_online_supermarket.Controllers
             foreach (CashierViewModel element in models) 
             {
                 sql.UpdateCustOrder(element.OrderId,"待发货");
-                sql.UpdateProductInfo(element.OrderId,element.productid, element.productnum);
+                sql.UpdateProductInfo(element.OrderId, element.productnum);
                 sql.UpdateBalance(element.OrderId);
             }
 
@@ -215,7 +215,7 @@ namespace Agriculture_online_supermarket.Controllers
             //尝试增加购物车订单商品的数量（检查库存）
             LinkToSQL sql = new LinkToSQL();
             DataSet ds1;
-            ds1 = sql.CustGetCmdInfo(OrderId);
+            ds1 = sql.CustNumCompare(OrderId);
             DataTable dt = ds1.Tables[0];
             if (Convert.ToInt32(dt.Rows[0][0])+1 <= Convert.ToInt32(dt.Rows[0][1])) //这边要改！！
                 sql.UpdateShoppingCart(OrderId,1);

@@ -164,31 +164,25 @@ namespace Agriculture_online_supermarket.Models
     }
     public class CustomerShoppingcartModle
     {
-        public string username
+        public string userId
         {
             get; set;
         }
-
-        [Required(ErrorMessage = "收货地址必须填")]
+        public string sellerId
+        {
+            get; set;
+        }
+        /*[Required(ErrorMessage = "收货地址必须填")]
         public string address
         {
             get; set;
-        }
+        }*/
         public string productId
         {
             get; set;
         }
 
-        public string productName
-        {
-            get; set;
-        }
-
-
-        public string productInfo
-        {
-            get; set;
-        }
+     
         /// <summary>
         /// 货物数量 IdtNum
         /// </summary>
@@ -228,13 +222,13 @@ namespace Agriculture_online_supermarket.Models
         {
             set; get;
         }
-        public CustomerShoppingcartModle(string username, string address, string productId, string productName, string productInfo, double productNum, double Inventory, string unit, double unitPrice, double TotalMoney, string imagePath)
+        public CustomerShoppingcartModle(string username, string sellerId, string productId, int productNum, double Inventory, string unit, double unitPrice, double TotalMoney, string imagePath)
         {
-            this.username = username;
-            this.address = address;
+            this.userId = username;
+            this.sellerId = sellerId;
             this.productId = productId;
-            this.productInfo = productInfo;
-            this.productName = productName;
+            
+    
             this.productNum = productNum;
             this.imagePath = imagePath;
             this.Inventory = Inventory;

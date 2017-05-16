@@ -133,59 +133,116 @@ namespace Agriculture_online_supermarket.Controllers
         /// <returns></returns>
         public DataSet CustGetAllCmdInfo() //所有的商品以及其信息
         {
-
+            String sql = "Select * from db_Commodity";
+            DataBase db = new DataBase();
+            return db.GetDataSet(sql);
         }
         public DataSet CustGetCmdInfo(string id)//商品号为id的商品详细信息
         {
-
+            String sql = "Select * from db_Commodity where ShpID='" + id + "'";
+            DataBase db = new DataBase();
+            return db.GetDataSet(sql);
         }
         public DataSet GetAllCustOrdInfo(string CustID)//所有买家id为CustID的订单及信息
         {
-
+            String sql = "Select * from  db_Indent where ShperID='" + CustID + "'";
+            DataBase db = new DataBase();
+            return db.GetDataSet(sql);
         }
         public DataSet GetCustShopCInfo(string CustID)//所有买家id为CustID的购物车及信息
         {
-
+            String sql = "Select * from  db_Indent where IdtStatus='购物车' and ShperID='" + CustID + "'";
+            DataBase db = new DataBase();
+            return db.GetDataSet(sql);
         }
         public DataSet CustGetOrdDeInfo(string OrderId)  //订单号为 orderid的订单详情（订单状态、物流号）
         {
-
+            String sql = "Select * from  db_Indent where IdtID='" + OrderId + "'";
+            DataBase db = new DataBase();
+            return db.GetDataSet(sql);
         }
         public DataSet GetSearchResult(string SearchContent)//商品名中包含有SearchContent的所有商品及信息
         {
-
+            String sql = "Select * from  db_Commodity where CmdName LIKE'%" + SearchContent + "%'";
+            DataBase db = new DataBase();
+            return db.GetDataSet(sql);
         }
-        public void AddShoppingCart(string username, string address, string productId, string productName, string productInfo, int productNum, string unit, double unitPrice, double TotalMoney)    //加入购物车表,即订单的第一次产生过程，请数据库为它自动生成订单号
+        public void AddShoppingCart(string userId, string sellerId, string productId, int productNum, string status, DateTime IdtDate, double TotalMoney)
+        //加入购物车表,即订单的第一次产生过程，请数据库为它自动生成订单号
         {
-
+            Hashtable ht = new Hashtable();
+            string sql = "select IdtID from db_Indent order by IdtID desc";
+            DataBase db = new DataBase();
+            int max = db.Count(sql);
+            max++;
+            ht.Add("IdtID", max.ToString());
+            ht.Add("ShpID", "'" + sellerId + "'");
+            ht.Add("ShperID", "'" + userId + "'");
+            ht.Add("CmdID", "'" + productId + "'");
+            ht.Add("IdtNum", productNum.ToString());
+            ht.Add("IdtStatus", "'" + status + "'");
+            ht.Add("IdtDate", IdtDate.ToString());
+            ht.Add("IdtTP", TotalMoney.ToString());
+            db.Insert("db_Indent", ht);
         }
-        public DataSet  GetShoppingCart(string CustID)// 得到用户ID为CustID的购物车内所有商品的string OrderId,string productid，string productname，double unitprice，int productnum请按照我的顺序
+        public DataSet GetShoppingCart(string CustID)
+        // 得到用户ID为CustID的购物车内所有商品的string orderId,string productid，string productname，double unitprice，int productnum请按照我的顺序
         {
-
+            String sql = "Select IdtID,a.CmdID,CmdName,CmdUP,IdtNum from db_Commodity a, db_Indent b where a.CmdID=b.CmdID and IdtStatus='购物车' and ShperID='" + CustID + "'";
+            DataBase db = new DataBase();
+            return db.GetDataSet(sql);
         }
-      
         public void UpdateCustOrder(string OrderId, string status)//给你收银台的订单号，然后改成的状态为status
         {
-
+            String sql = "update db_Indent set IdtStatus='" + status + "' where IdtID='" + OrderId + "'";
+            DataBase db = new DataBase();
+            db.ExecuteSQL(sql);
         }
-        public void UpdateProductInfo(string OrederId,string productid, int productnum)//改变商品号为productid的库存，这边productnum是已经购买走的，所以直接库存 减 productnum
+        public void UpdateProductInfo(string OrderId, int productnum)
+        //改变商品号为productid的库存，这边productnum是已经购买走的，所以直接库存 减 productnum
         {
-
+            String sql = "update db_Commodity set CmdInventory=CmdInventory-" + productnum.ToString() + "where IdtID='" + OrderId + "'";
+            DataBase db = new DataBase();
+            db.ExecuteSQL(sql);
         }
-        public void DeleteShoppingCart(string OrderId)// 删除订单号为OrderId的购物车内的商品订单
+        public void DeleteShoppingCart(string OrderId)
+        // 删除订单号为OrderId的购物车内的商品订单
         {
-
+            String sql = "delete from db_Indent where IdtID=" + OrderId.ToString();
+            DataBase db = new DataBase();
+            db.ExecuteSQL(sql);
         }
-        public void UpdateShoppingCart(string OrderId, int cnum) // cnum表示买家对购物车内某个订单（OrderId）的商品数量进行加或者减，我在外面调好了正负，你直接加就行。
+        public void UpdateShoppingCart(string OrderId, int cnum)
+        // cnum表示买家对购物车内某个订单（OrderId）的商品数量进行加或者减，我在外面调好了正负，你直接加就行。
         {
-
+            String sql = "update db_Indent set IdtNum=IdtNum+" + cnum.ToString() + "where IdtID='" + OrderId + "'";
+            DataBase db = new DataBase();
+            db.ExecuteSQL(sql);
         }
-        public void UpdateBalance(string OrederId)//这个这个说出来你可能不信，这个给你订单id，表明这个订单支付完成，现在需要你把他的买家卖家的余额都更新一下。
+        public void UpdateBalance(string OrederId)
+        //这个这个说出来你可能不信，这个给你订单id，表明这个订单支付完成，现在需要你把他的买家卖家的余额都更新一下。
         {
+            String sql = "select * from db_Indent where IdtID=" + OrederId;
+            DataBase db = new DataBase();
+            DataRow dr = db.GetDataRow(sql);
+            //db.ExecuteSQL(sql);
+            sql = "update db_Shop set ShpBLCE=ShpBLCE+" + dr["IdtTP"].ToString() + "where ShpID='" + dr["ShpID"] + "'";
+            db.ExecuteSQL(sql);
+            sql = "update db_Shopper set ShperBLCE=ShperBLCE-" + dr["IdtTP"].ToString() + "where ShperID='" + dr["ShperID"] + "'";
+            db.ExecuteSQL(sql);
+        }
+        public DataSet CustNumCompare(string OrderId)//给我该订单号的商品数量 和 该商品的 库存数量
+        {
+            String sql = "select CmdID,ShpID from db_Indent where IdtID='" + OrderId + "'";
+            DataBase db = new DataBase();
+            DataRow dr = db.GetDataRow(sql);
+
+            sql = "select b.CmdNum,a.CmdInventory  from db_Commodity a,db_Indent b    where a.CmdId=b.CmdId and a.IdtID='" + OrderId+"' and b.CmdID = '" + dr["CmdID"] + "' and b.ShpID='" + dr["ShpID"] + "'";
+            return db.GetDataSet(sql);
 
         }
-        
-               
-        
+
+
+
     }
 }
