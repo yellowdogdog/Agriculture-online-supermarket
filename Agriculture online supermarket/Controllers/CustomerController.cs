@@ -131,7 +131,7 @@ namespace Agriculture_online_supermarket.Controllers
             }
             //添加购物车操作
             LinkToSQL sql = new LinkToSQL();
-            sql.AddShoppingCart(ShopC.username, ShopC.address, ShopC.productId, ShopC.productName, ShopC.productInfo, ShopC.productNum, ShopC.Inventory, ShopC.unit, ShopC.unitPrice, ShopC.TotalMoney);
+            sql.AddShoppingCart(ShopC.username, ShopC.address, ShopC.productId, ShopC.productName, ShopC.productInfo, ShopC.productNum,  ShopC.unit, ShopC.unitPrice, ShopC.TotalMoney);
             return RedirectToAction("ShoppingCart");
         }
         public ActionResult Purchase(/*string ProductId 假设，只买了1个*/)

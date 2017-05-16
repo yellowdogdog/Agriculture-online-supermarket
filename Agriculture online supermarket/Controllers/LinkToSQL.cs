@@ -126,5 +126,61 @@ namespace Agriculture_online_supermarket.Controllers
             db.Updata("db_Commodity", ht, where);
 
         }
+
+        public DataSet CustGetAllCmdInfo() //所有的商品以及其信息
+        {
+
+        }
+        public DataSet CustGetCmdInfo(string id)//商品号为id的商品详细信息
+        {
+
+        }
+        public DataSet GetAllCustOrdInfo(string CustID)//所有买家id为CustID的订单及信息
+        {
+
+        }
+        public DataSet GetCustShopCInfo(string CustID)//所有买家id为CustID的购物车及信息
+        {
+
+        }
+        public DataSet CustGetOrdDeInfo(string OrderId)  //订单号为 orderid的订单详情（订单状态、物流号）
+        {
+
+        }
+        public DataSet GetSearchResult(string SearchContent)//商品名中包含有SearchContent的所有商品及信息
+        {
+
+        }
+        public void AddShoppingCart(string username, string address, string productId, string productName, string productInfo, int productNum, string unit, double unitPrice, double TotalMoney)    //加入购物车表,,为什么没有表单号呢？自己生成？我数据多了点，你看看哪些可以不要，跟页面要协商。
+        {
+
+        }
+        public DataSet  GetShoppingCart(string CustID)// 得到用户ID为CustID的购物车内所有商品的string productid，string productname，double unitprice，int productnum请按照我的顺序
+        {
+
+        }
+        public void UpdateCustOrder1(string productid, string status)//不知道为什么收银台就是没有订单号，所以你这边就直接用 商品号  去查找订单，然后改成的状态为status
+        {
+
+        }
+        public void UpdateCustOrder2(string OrderId, string status)//这边还有这个就有订单号，我们先分开，然后再合并吧。
+        {
+
+        }
+        public void UpdateProductInfo(string productid, int productnum)//改变商品号为productid的库存，这边productnum是已经购买走的，所以直接库存 减 productnum
+        {
+
+        }
+        public void DeleteShoppingCart(string OrderId)// 删除订单号为OrderId的购物车内的商品订单
+        {
+
+        }
+        public void UpdateShoppingCart(string OrderId, int cnum) // cnum表示买家对购物车内某个订单（OrderId）的商品数量进行加或者减，我在外面调好了正负，你直接加就行。
+        {
+
+        }
+        
+               
+        
     }
 }

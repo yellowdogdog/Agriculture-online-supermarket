@@ -180,7 +180,7 @@ namespace Agriculture_online_supermarket.Models
         /// <summary>
         /// 货物数量 IdtNum
         /// </summary>
-        public double productNum
+        public int productNum
         {
             get; set;
         }
