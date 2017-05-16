@@ -1,34 +1,6 @@
 /* CSS Document */
 
-body,
-div,
-dl,
-dt,
-dd,
-ul,
-ol,
-li,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-pre,
-code,
-form,
-fieldset,
-legend,
-input,
-button,
-textarea,
-blockquote,
-th,
-td,
-p {
-    margin: 0;
-    padding: 0;
-}
+
 
 body {
     color: #1a1a1a;

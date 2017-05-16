@@ -2,10 +2,57 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title= "购物车";
 }
+@model List<Agriculture_online_supermarket.Models.CustomerShoppingcartModle>
 <h2>购物车</h2>
 @Html.ActionLink("商品", "Detail", "Customer")
 @Html.ActionLink("删除", "DeleteProduct", "Customer")
 @Html.ActionLink("购买", "PurchaseAll", "Customer")
 @Html.ActionLink("+", "IncreaseNum", "Customer")
 @Html.ActionLink("-", "DecreaseNum", "Customer")
+<section class="col-md-12">
+    <div class="container">
+        <div class="cart col-md-2"><p>商品名</p></div>
+        <div class="cart col-md-1"><p>单价</p></div>
+        <div class="cart col-md-3" float="center"><p class="text-center">数量</p></div>
+        <div class="cart col-md-1"></div>
+        <div class="cart col-md-2">
+            <p>操作</p>
+        </div>
+        <div class="cart col-md-3"></div>
+        <div class="cart col-md-12"></div>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <div class="cart col-md-2">
+                <p>@*@Html.ActionLink()商品名称*@</p>
+            </div>
+            <div class="cart col-md-1">
+                <p>@Html.DisplayFor(modelitem => Model[i].unitPrice)</p>
+            </div>
+            <div class="cart col-md-1">
 
+
+
+                <p class="text-right">@*@Html.ActionLink(" - ","IncreaseNum","Customer",new { @id = Model[i]},null)*@</p>
+            </div>
+            <div class="cart col-md-1">
+                <input value="@Html.Raw(Model[i].productNum+"")" type="text" class="addCartNumber" readonly style="width:50px; padding=0px;">
+            </div>
+            <div class="cart col-md-2">
+                <p class="text-left"><a class="btn " role="button">&nbsp;+ &nbsp;</a></p>
+            </div>
+
+
+
+            <div class="cart col-md-2">
+                <p>删除</p>
+            </div>
+        }
+
+        <div class="cart col-md-3"></div>
+        <div class="cart col-md-12"></div>
+        <div class="cart col-md-7"></div>
+        <div class="cart col-md-4">
+            <p class="text-right">@Html.ActionLink("去结算", "PurchaseAll", "Customer", new { @class = "btn btn-danger" })</p>
+        </div>
+    </div>
+</section>

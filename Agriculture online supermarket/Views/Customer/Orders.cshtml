@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "订单";
 }
-
+@model List<Agriculture_online_supermarket.Models.CustomerOrderViewModel>
 <h2>订单</h2>
 
 <table>
@@ -37,24 +37,55 @@
 
                         <div class="order col-md-2">
                             <p>订单编号</p>
-                        </div><div class="orderdesb col-md-2"><p>物流单号</p></div>
+                        </div>
                         <div class="order col-md-2"><p>订单描述</p></div>
                         <div class="order col-md-2 col-md-offset-0"><p>订单商品数量</p></div>
-                        <div class="order col-md-2 col-md-2"><p>订单总额</p></div>
-                        <div class="order col-md-2"><p>订单操作</p></div>
-                        <div class="order col-md-2">
-                            <p>001</p>
-                        </div><div class="order col-md-2"><p>00001</p></div>
-                        <div class="order col-md-2"><p><a href="#">土鸡蛋250g</a></p></div>
-                        <div class="order col-md-2"><p>1</p></div>
-                        <div class="order col-md-2 col-md-2"><p>￥3.99</p></div>
-                        <div class="order col-md-2">
-                            <p class="text-center">
-                                <a href="#" class="btn btn-danger" role="button">查看 </a>
-                                <a href="#" class="btn btn-danger" role="button">申请退款 </a>
-
-                            </p>
-                        </div>
+                        <div class="order col-md-2 "><p>订单总额</p></div>
+                        <div class="order col-md-2"><p>查看</p></div>
+                        <div class="order col-md-2"><p>退款</p></div>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            if (Model[i].orderStatus.Equals("订单取消")
+                                ||Model[i].orderStatus.Equals("已完成")
+                                || Model[i].orderStatus.Equals("待退款")
+                                || Model[i].orderStatus.Equals("同意退款")
+                                || Model[i].orderStatus.Equals("拒绝退款"))
+                            {
+                                <div class="order col-md-2">
+                                    <p>@Html.DisplayTextFor(modelitem=>Model[i].orderId)</p>
+                                </div>
+                                <div class="order col-md-2"><p>@Html.ActionLink("Detail","Customer",new { @id =Model[i].productNo})</p></div>
+                                <div class="order col-md-2"><p>@Html.DisplayTextFor(modelitem=>Model[i].productNum)</p></div>
+                                <div class="order col-md-2 col-md-2"><p>@Html.DisplayTextFor(modelitem => Model[i].TotalMoney)</p></div>
+                                <div class="order col-md-2">
+                                    <p class="text-center">                                        
+                                        @Html.ActionLink("查看","OrderDetail", "Customer", new { @id = Model[i].orderId },new {@class= "btn btn-danger" })
+                                    </p>
+                                </div>
+                                <div class="order col-md-2">
+                                    @if (Model[i].orderStatus.Equals("已完成"))
+                                    {
+                                        Html.ActionLink("申请退款", "ApplyRefund", "Customer", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" });
+                                    }else if (Model[i].orderStatus.Equals("订单取消")){
+                                        <p>卖家拒绝发货</p>
+                                    }
+                                    else if (Model[i].orderStatus.Equals("待退款"))
+                                    {
+                                        <p>等待卖家退款</p>
+                                    }
+                                    else if (Model[i].orderStatus.Equals("同意退款"))
+                                    {
+                                        <p>已退款</p>
+                                    }
+                                    else if (Model[i].orderStatus.Equals("拒绝退款"))
+                                    {
+                                        <p>卖家拒绝退款</p>
+                                    }
+                                    
+                                </div>
+                            }
+                        }
+                        
                     </div>
                     <div class="tab-pane fade" id="pane2">
 
@@ -66,15 +97,21 @@
                         <div class="order col-md-2 col-md-2"><p>订单总额</p></div>
                         <div class="order col-md-2"><p>订单操作</p></div>
                         <div class="order col-md-2"><p> </p></div>
-
-                        <div class="order col-md-2">
-                            <p>001</p>
-                        </div>
-                        <div class="order col-md-2"><p><a href="#">土鸡蛋250g</a></p></div>
-                        <div class="order col-md-2"><p>1</p></div>
-                        <div class="order col-md-2 col-md-2"><p>￥3.99</p></div>
-                        <div class="order col-md-2"><p class="text-center"><a href="order.html" class="btn btn-danger" role="button">查看 </a></p></div>
-                        <div class="order col-md-2"><p></p></div>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            if (Model[i].Equals("待发货"))
+                            {
+                                <div class="order col-md-2">
+                                    <p>@Html.DisplayTextFor(modelitem => Model[i].orderId)</p>
+                                </div>
+                                <div class="order col-md-2"><p>@Html.ActionLink("Detail", "Customer", new { @id = Model[i].productNo })</p></div>
+                                <div class="order col-md-2"><p>@Html.DisplayTextFor(modelitem => Model[i].productNum)</p></div>
+                                <div class="order col-md-2 col-md-2"><p>@Html.DisplayTextFor(modelitem => Model[i].TotalMoney)</p></div>
+                                <div class="order col-md-2"><p class="text-center">@Html.ActionLink("查看", "OrderDetail", "Customer", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })</p></div>
+                                <div class="order col-md-2"><p></p></div>
+                            }
+                        }
+                        
 
                     </div>
                     <div class="tab-pane fade" id="pane3">
@@ -82,24 +119,31 @@
                         <div class="order col-md-2">
                             <p>订单编号</p>
                         </div>
-                        <div class="order col-md-2"><p>物流单号</p></div>
+
                         <div class="order col-md-2"><p>订单描述</p></div>
                         <div class="order col-md-2"><p>订单商品数量</p></div>
                         <div class="order col-md-2 col-md-2"><p>订单总额</p></div>
                         <div class="order col-md-2"><p>订单操作</p></div>
-                        <div class="order col-md-2">
-                            <p>001</p>
-                        </div><div class="order col-md-2"><p>00001</p></div>
-                        <div class="order col-md-2"><p><a href="#">土鸡蛋250g</a></p></div>
-                        <div class="order col-md-2"><p>1</p></div>
-                        <div class="order col-md-2 col-md-2"><p>￥3.99</p></div>
-                        <div class="order col-md-2">
-                            <p class="text-center">
-                                <a href="#" class="btn btn-danger" role="button">查看 </a>
-                                <a href="#" class="btn btn-danger" role="button">确认收货 </a>
-                            </p>
-                        </div>
-
+                        <div class="order col-md-2"><p>收货</p></div>
+                        @for (int i = 0; i < Model.Count; i++)
+                        {
+                            if (Model[i].orderStatus.Equals("发货中"))
+                            {
+                                <div class="order col-md-2">
+                                    <p>@Html.DisplayTextFor(modelitem => Model[i].orderId)</p>
+                                </div>
+                                <div class="order col-md-2"><p>@Html.ActionLink("Detail", "Customer", new { @id = Model[i].productNo })</p></div>
+                                <div class="order col-md-2"><p>@Html.DisplayTextFor(modelitem => Model[i].productNum)</p></div>
+                                <div class="order col-md-2 col-md-2"><p>@Html.DisplayTextFor(modelitem => Model[i].TotalMoney)</p></div>
+                                <div class="order col-md-2">
+                                    <p class="text-center">
+                                        @Html.ActionLink("查看", "OrderDetail", "Customer", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                    </p>
+                                </div>
+                                <div class="order col-md-2">@Html.ActionLink("确认收货", "ConfirmReceipt", "Customer", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })</div>
+                            }
+                        }
+                        
                     </div>
                 </div>
             </div>
