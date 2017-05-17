@@ -29,7 +29,7 @@ namespace Agriculture_online_supermarket.Controllers
             return View(SellerIndexList);//View(models) 正在售卖商品列表
         }
 
-        public ActionResult ProductInfo(string ProductID)
+        public ActionResult ProductInfo(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -40,7 +40,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             string ShpID = (string)Session["id"];
             LinkToSQL sql = new LinkToSQL();
-            ds1 = sql.GetCmdInfo(ProductID, ShpID);
+            ds1 = sql.GetCmdInfo(id, ShpID);
             ProductInfoViewModel productInfo = DataSetToModel<ProductInfoViewModel>(new ProductInfoViewModel(),ds1.Tables[0].Rows[0]);
             return View(productInfo);//View(model)商品信息(此model应该在提交SaveProductInfo()时作为参数）
         }
@@ -59,7 +59,7 @@ namespace Agriculture_online_supermarket.Controllers
             IList<SellerOrderViewModel> SellerOrderList = DataSetToIList<SellerOrderViewModel>(new SellerOrderViewModel(),ds1);
             return View(SellerOrderList);//View(models) 订单列表
         }
-        public ActionResult Delivery(string OrderId)
+        public ActionResult Delivery(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -69,11 +69,11 @@ namespace Agriculture_online_supermarket.Controllers
             //获取订单信息并填充模型
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
-            ds1 = sql.GetDelivery(OrderId);
+            ds1 = sql.GetDelivery(id);
             DeliveryViewModel delivery = DataSetToModel<DeliveryViewModel>(new DeliveryViewModel(), ds1.Tables[0].Rows[0]);
             return View(delivery);//View(model) 订单发货和修改发货信息都用此Action，model中的物流信息等可能为空。
         }
-        public ActionResult SellerOrderDetail(string OrderId)
+        public ActionResult SellerOrderDetail(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -83,7 +83,7 @@ namespace Agriculture_online_supermarket.Controllers
             //获取订单信息并填充模型
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
-            ds1 = sql.GetIdtInfo(OrderId);
+            ds1 = sql.GetIdtInfo(id);
             SellerOrderDetailViewModel sellerOrder = DataSetToModel<SellerOrderDetailViewModel>(new SellerOrderDetailViewModel(),ds1.Tables[0].Rows[0]);
             return View(sellerOrder);//View(model) 订单信息
         }
@@ -97,7 +97,7 @@ namespace Agriculture_online_supermarket.Controllers
             //准备空模型
             return View("ProductInfo");//View(model) 待填充的空模型
         }
-        public ActionResult DeleteProduct(string ProductId)
+        public ActionResult DeleteProduct(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -106,7 +106,7 @@ namespace Agriculture_online_supermarket.Controllers
             }
             //删除商品
             LinkToSQL sql = new LinkToSQL();
-            sql.DeleteProduct(ProductId);
+            sql.DeleteProduct(id);
             return RedirectToAction("SellerIndex");
         }
         public ActionResult SaveProductInfo(ProductInfoViewModel product, HttpPostedFileBase file)
@@ -144,7 +144,7 @@ namespace Agriculture_online_supermarket.Controllers
             sql.ChangeState(delivery.orderId, "发货中");
             return RedirectToAction("SellerOrder");
         }
-        public ActionResult Refuse(string OrderId)
+        public ActionResult Refuse(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -153,10 +153,10 @@ namespace Agriculture_online_supermarket.Controllers
             }
             //更改相应订单的状态
             LinkToSQL sql = new LinkToSQL();
-            sql.ChangeState(OrderId, "订单取消");
+            sql.ChangeState(id, "订单取消");
             return RedirectToAction("SellerOrder");
         }
-        public ActionResult AgreeRefund(string OrderId)
+        public ActionResult AgreeRefund(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -165,10 +165,10 @@ namespace Agriculture_online_supermarket.Controllers
             }
             //更改相应订单的状态
             LinkToSQL sql = new LinkToSQL();
-            sql.ChangeState(OrderId, "同意退款");
+            sql.ChangeState(id, "同意退款");
             return RedirectToAction("SellerOrder");
         }
-        public ActionResult DisagreeRefund(string OrderId)
+        public ActionResult DisagreeRefund(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -177,7 +177,7 @@ namespace Agriculture_online_supermarket.Controllers
             }
             //更改相应订单的状态 
             LinkToSQL sql = new LinkToSQL();
-            sql.ChangeState(OrderId, "拒绝退款");
+            sql.ChangeState(id, "拒绝退款");
             return RedirectToAction("SellerOrder");
         }
 
@@ -284,7 +284,7 @@ namespace Agriculture_online_supermarket.Controllers
                 }
                 else if ((int)Session["state"] == 3)
                 {
-                    return RedirectToAction("AdminIndex", "Admin");
+                    return RedirectToAction("AdminIndex", "Account");
                 }
 
                 else

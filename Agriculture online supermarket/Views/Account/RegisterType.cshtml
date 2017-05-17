@@ -3,5 +3,13 @@
     ViewBag.Title = "注册选择";
 }
 <h2>注册选择</h2>
-@Html.ActionLink("买家注册", "Register")
-@Html.ActionLink("卖家注册", "RegisterSeller")
+<div class="text-center" style="margin-top:50px">
+    <h2>
+        @Html.ActionLink("买家注册", "Register", null, new { @class = "btn-default btn",@style="foot-size:30px"})
+    </h2>
+    <h2>
+        @Html.ActionLink("卖家注册", "RegisterSeller", null, new { @class = "btn-default btn", @style = "foot-size:30px" })
+    </h2>
+    
+    
+</div>

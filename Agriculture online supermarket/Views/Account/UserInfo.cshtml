@@ -40,16 +40,20 @@
             @Html.TextBoxFor(m => m.adress, new { @class = "form-control" })
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-md-2 control-label">余额</label>
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.balance, new { @class = "form-control" })
+    if ((int)Session["state"] == 1 || (int)Session["state"] == 2)
+    {
+        <div class="form-group">
+            <label class="col-md-2 control-label">余额</label>
+            <div class="col-md-10">
+                @Html.DisplayFor(m => m.balance)
+                @Html.ActionLink("充值/取款", "Balance", "Account", new { @class = "btn btn-default" })
+            </div>
         </div>
-    </div>
+    }
+    
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            @Html.ActionLink("充值/取款", "Balance", "Account")
-            @Html.ActionLink("保存", "SaveAccountInfo", "Account")
+            <input value="保存" type="submit" class="btn-default btn" />
         </div>
     </div>
 }

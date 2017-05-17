@@ -174,4 +174,19 @@ namespace Agriculture_online_supermarket.Models
             this.balance = balance;
         }
     }
+    public class AdminIndexViewModel
+    {
+        public string userName
+        {
+            get;set;
+        }
+        public string userId
+        {
+            get;set;
+        }
+        public int type
+        {
+            get;set;
+        }
+    }
 }

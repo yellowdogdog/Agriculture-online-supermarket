@@ -502,45 +502,58 @@ namespace Agriculture_online_supermarket.Controllers
             //管理员管理界面
             //判断登入状态
             //获得用户列表，填充模型
+
             if (needRedirect())
             {
                 return redirectAction;
             }
-            return View();//View(Model models)List<Model>
+            DataBase db = new DataBase();
+
+            return View(db.getUsers());//View(Model models)List<Model>
         }
         public ActionResult UserInfo()
         {
             //获得用户ID
+            if (Session["id"] == null || (int)Session["state"] == 0)
+            {
+                return RedirectToAction("Index", "Customer");
+            }
             string UserId = (string)Session["id"];
 
-            //获得用户信息,填model
-            UserinfoModel model = new UserinfoModel(null,null,null,null,null,0);
-            //model = getUserInfo(UserId);
-            return View(model);//View(Model model)
+            DataBase db = new DataBase();
+            return View(db.getUserInfo(UserId));//View(Model model)
         }
         public ActionResult Balance()
         {
+            if (Session["id"]==null||(int)Session["state"]==0)
+            {
+                return RedirectToAction("Index", "Customer");
+            }else if((int)Session["state"] == 3)
+            {
+                return RedirectToAction("AdminIndex", "Account");
+            }
             //获得用户ID
             string UserId = (string)Session["id"];
-            //double Balance = getBalace(UserId);
             //获得账户余额，填充model
             BalanceModel model =new BalanceModel();
-            //model.Balance = Balace;
-
+            
+            DataBase db = new DataBase();
+            model.Balance = db.getBalace(UserId);
             return View(model);//View(model)
         }
-        public ActionResult DeleteAccount(/*string UserId*/)
+        public ActionResult DeleteAccount(string id)
         {
             //检查是否管理员
             if (needRedirect())
             {
                 return redirectAction;
-            } 
+            }
             //删除帐号
-            //deleteAccount(string UserId);
+            DataBase db = new DataBase();
+            db.deleteAccount(id);
             return RedirectToAction("AdminIndex");
         }
-        public ActionResult ManageAccountInfo(/*string UserId*/)
+        public ActionResult ManageAccountInfo(string id)
         {
             //检查是否管理员
             if (needRedirect())
@@ -548,30 +561,33 @@ namespace Agriculture_online_supermarket.Controllers
                 return redirectAction;
             }
             //找到用户信息，填写model
-            UserinfoModel model = new UserinfoModel(null, null, null, null, null, 0);
-            //model = getUserInfo(UserId);
-            return View("UserInfo",model);//View(models)
+
+            DataBase db = new DataBase();
+            return View("UserInfo",db.getUserInfo(id));//View(models)
         }
-        public ActionResult SaveAccountInfo(/*UserinfoModel model*/)
+        public ActionResult SaveAccountInfo(UserinfoModel model)
         {
             //存用户信息
-            //saveAccountInfo(model);
+            DataBase db = new DataBase();
+            db.saveAccountInfo(model);
             return RedirectToLocal(ViewBag.ReturnUrl);
         }
-        public ActionResult Pay(/*double Money*/)
+        public ActionResult Pay(double Money)
         {
             //获得用户ID
             string UserId = (string)Session["id"];
             //修改余额
-            //payBalance(UserId,Money);
+            DataBase db = new DataBase();
+            db.payBalance(UserId,Money);
             return RedirectToAction("UserInfo");
         }
-        public ActionResult Refund(/*double Money*/)
+        public ActionResult Refund(double Money)
         {
             //获得用户ID
             string UserId = (string)Session["id"];
             //修改余额
-            //refundBalance(UserId,Money);
+            DataBase db = new DataBase();
+            db. refundBalance(UserId,Money);
             return RedirectToAction("UserInfo");
         }
         private bool needRedirect()

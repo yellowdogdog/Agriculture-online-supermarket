@@ -319,7 +319,7 @@ namespace Agriculture_online_supermarket.Persistent
              }*/
         }
 
-        UserinfoModel getUserInfo(string UserId)
+        public  UserinfoModel getUserInfo(string UserId)
         {
 
             UserinfoModel ufm;
@@ -351,7 +351,7 @@ namespace Agriculture_online_supermarket.Persistent
             else ufm = null;
             return ufm;
         }
-        double getBalace(string UserId)//设定查找失败时返回-1
+        public double getBalace(string UserId)//设定查找失败时返回-1
         {
             //DataBase db = new DataBase();
             int e = exist(UserId);
@@ -369,7 +369,7 @@ namespace Agriculture_online_supermarket.Persistent
             double blc = Convert.ToDouble(dr[sql]);
             return blc;
         }
-        void deleteAccount(string UserId)
+        public  void deleteAccount(string UserId)
         {
             int e = exist(UserId);
             if (e < 1 || e > 3) return;
@@ -379,7 +379,7 @@ namespace Agriculture_online_supermarket.Persistent
             if (e == 3) sql = "delete from db_Manager where MngID='" + UserId + "'";
             this.ExecuteSQL(sql);
         }
-        void saveAccountInfo(UserinfoModel model)
+        public void saveAccountInfo(UserinfoModel model)
         {
             Hashtable ht = new Hashtable();
             int e = exist(model.ID);
@@ -407,8 +407,33 @@ namespace Agriculture_online_supermarket.Persistent
             //ht.Add("ShperID", "'"+model.ID+"'");
 
         }
+        public List<AdminIndexViewModel> getUsers()
+        {
+            List<AdminIndexViewModel> models = new List<AdminIndexViewModel>();
+            string sql = "select ShperID,ShperName from db_Shopper";
+            DataSet ds = GetDataSet(sql);
+            for(int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                AdminIndexViewModel model = new AdminIndexViewModel();
+                model.userId = (string)ds.Tables[0].Rows[i][0];
+                model.userName= (string)ds.Tables[0].Rows[i][1];
+                model.type = 1;
+                models.Add(model);
+            }
+            sql = "select ShpID,ShpName from db_Shop";
+            ds = GetDataSet(sql);
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                AdminIndexViewModel model = new AdminIndexViewModel();
+                model.userId = (string)ds.Tables[0].Rows[i][0];
+                model.userName = (string)ds.Tables[0].Rows[i][1];
+                model.type = 2;
+                models.Add(model);
+            }
+            return models;
+        }
 
-        void payBalance(string UserId, double Money)
+        public void payBalance(string UserId, double Money)
         {
             int e = exist(UserId);
             if (e < 1 || e > 2) return;
@@ -421,7 +446,7 @@ namespace Agriculture_online_supermarket.Persistent
                 sql = "update Shopper Set ShperBLCE=ShpBLCE+" + Money.ToString() + " where ShperID='" + UserId + "'";
             this.ExecuteSQL(sql);
         }
-        void refundBalance(string UserId, double Money)
+        public void refundBalance(string UserId, double Money)
         {
             int e = exist(UserId);
             if (e < 1 || e > 2) return;

@@ -1,28 +1,58 @@
-﻿@model List<Agriculture_online_supermarket.Models.IndexModel>
+﻿@model List<Agriculture_online_supermarket.Models.AdminIndexViewModel>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "管理界面";
 }
 <h2>管理界面</h2>
 <div class="row">
-    <div class="col-md-8">
-        @{
-            int count = 0;
-        }
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <p>用户ID</p>
+            </div>
+            <div class="col-md-2">
+                <p>用户昵称</p>
+            </div>
+            <div class="col-md-2">
+                <p>用户类型</p>
+            </div>
+            <div class="col-md-2">
+               <p>信息修改</p>
+            </div>
+            <div class="col-md-2">
+               <p>删除帐号</p>
+            </div>
+        </div>
+
         @if (Model != null)
         {
-            for (int i = 0; i < Math.Ceiling(Model.Count / 1.0); i++)
+            for (int i = 0; i < Model.Count; i++)
             {
-                Agriculture_online_supermarket.Models.IndexModel model = Model[count];
-                <div class="form-group">
-                    <a href="UserInfo/@Html.Raw(model.sellerName)">
-                        <div class="col-md-10">
-                            <input type="submit" value="修改" class="btn btn-default" />
-                            <input type="submit" value="删除" class="btn btn-default" />
-                        </div>
-                    </a>
+
+                <div class="row" style="margin:4px">
+                    <div class="col-md-2">
+                        @Html.DisplayFor(modelitem=>Model[i].userId)
+                    </div>
+                    <div class="col-md-2">
+                        @Html.DisplayFor(modelitem => Model[i].userName)
+                    </div>
+                    <div class="col-md-2">
+                        @if (Model[i].type == 1)
+                        {
+                            <p>买家</p>
+                        }else if (Model[i].type == 2)
+                        {
+                            <p>卖家</p>
+                        }
+                    </div>
+                    <div class="col-md-2">
+                        @Html.ActionLink("信息修改","ManageAccountInfo","Account",new {@id=Model[i].userId }, new { @class = "btn btn-default" })
+                    </div>
+                    <div class="col-md-2">
+                        @Html.ActionLink("删除帐号", "DeleteAccount", "Account", new { @id = Model[i].userId }, new { @class = "btn btn-danger" })
+                    </div>
                 </div>
-                count++;
+                
             }
         }
     </div>

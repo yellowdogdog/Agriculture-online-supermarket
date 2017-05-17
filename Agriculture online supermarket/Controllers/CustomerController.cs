@@ -356,7 +356,7 @@ namespace Agriculture_online_supermarket.Controllers
                     return RedirectToAction("SellerIndex","Seller");
                 }else if ((int)Session["state"] == 3)
                 {
-                    return RedirectToAction("AdminIndex", "Admin");
+                    return RedirectToAction("AdminIndex", "Account");
                 }else
                 {
                     return null;
