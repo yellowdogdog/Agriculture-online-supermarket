@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Data;
 using Agriculture_online_supermarket.Persistent;
 using System.Collections;
+using System.Web;
 
 namespace Agriculture_online_supermarket.Controllers
 {
@@ -28,7 +26,7 @@ namespace Agriculture_online_supermarket.Controllers
         public DataSet GetAllCmdInfo(string ShpID)
         {
             //获得该卖家的所有商品信息
-            string sql = "select CmdID productId,CmdName productName,CmdInventory Inventory from db_Commodity WHere ShpID '" + ShpID + "'";
+            string sql = "select CmdID productId,CmdName productName,CmdInventory Inventory from db_Commodity WHere ShpID= '" + ShpID + "'";
             DataBase db = new DataBase();
             DataSet ds = db.GetDataSet(sql);
             return ds;
@@ -38,8 +36,8 @@ namespace Agriculture_online_supermarket.Controllers
         public DataSet GetCmdInfo(string CmdID, string ShpID)
         {
             //根据商品ID返回该商品信息
-            string sql = "select CmdID productId,CmdName productName,CmdInfo productInfo,CmdInventory Inventory,CmdUnit unit,CmdUP unitPrice from db_Commodity WHere ShpID '" + ShpID
-                                    + "' and CmdID " + CmdID + "'"; ;
+            string sql = "select CmdID productId,CmdName productName,CmdInfo productInfo,CmdInventory Inventory,CmdUnit unit,CmdUP unitPrice,PhotoUrl imagePath from db_Commodity WHere ShpID='" + ShpID
+                                    + "' and CmdID=" + CmdID + "'"; ;
             DataBase db = new DataBase();
             DataSet ds = db.GetDataSet(sql);
             return ds;
@@ -93,7 +91,7 @@ namespace Agriculture_online_supermarket.Controllers
 
         }
 
-        public void AddCmdInfo(String ShpID, String productName, String productInfo, String unit, String unitPrice)
+        public void AddCmdInfo(String ShpID, String productName, String productInfo, String unit, String unitPrice,string ImagePath)
         {
             //新增商品信息,生成一个商品编号
             //productName 商品名，productInfo 商品信息,unit 商品单位,unitPrice 商品单价
@@ -108,11 +106,12 @@ namespace Agriculture_online_supermarket.Controllers
             hs.Add("CmdInfo", "'" + productInfo + "'");
             hs.Add("CmdUnit", "'" + unit + "'");
             hs.Add("CmdUP", unitPrice);
+            hs.Add("PhotoUrl", "'" + ImagePath + "'");
             db.Insert("db_Commodity", hs);
 
         }
 
-        public void UpdateCmdInfo(String ShpID, String productId, String productName, String productInfo, String unit, String unitPrice)
+        public void UpdateCmdInfo(String ShpID, String productId, String productName, String productInfo, String unit, String unitPrice, string ImagePath)
         {
             //更新商品信息商品ID为productId的商品信息
             //productName 商品名，productInfo 商品信息,unit 商品单位,unitPrice 商品单价
@@ -122,6 +121,7 @@ namespace Agriculture_online_supermarket.Controllers
             ht.Add("CmdInfo", "'" + productInfo + "'");
             ht.Add("CmdUnit", "'" + unit + "'");
             ht.Add("CmdUP", unitPrice);
+            ht.Add("PhotoUrl", "'" + ImagePath + "'");
             DataBase db = new DataBase();
             db.Updata("db_Commodity", ht, where);
 
@@ -163,7 +163,7 @@ namespace Agriculture_online_supermarket.Controllers
         }
         public DataSet GetSearchResult(string SearchContent)//商品名中包含有SearchContent的所有商品及信息
         {
-            String sql = "Select * from  db_Commodity where CmdName LIKE'%" + SearchContent + "%'";
+            String sql = "Select * from  db_Commodity where CmdName LIKE'*" + SearchContent + "*'";
             DataBase db = new DataBase();
             return db.GetDataSet(sql);
         }

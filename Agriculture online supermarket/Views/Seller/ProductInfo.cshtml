@@ -17,38 +17,62 @@
     <!-- </div>-->
 
 
-@using (Html.BeginForm("SaveAccountInfo", "Seller", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("SaveProductInfo", "Seller", FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
 {
     <div class="container">
         @Html.AntiForgeryToken()
+        <div class="col-md-8">
+            <div class="row">
+                <div class="sellersj col-md-3">
+                    <h4>商品名称：</h4>
+
+                </div>
+                <div class="sellersj col-md-6">@Html.TextBoxFor(m => m.productName, new { @class = "form-control" })</div>
+                <div class="sellersj col-md-3"><p>&nbsp;</p></div>
+            </div>
+        <div class="row">
+            <div class="sellersj col-md-3">
+                <h4> 单价：</h4>
+
+            </div>
+            <div class="sellersj col-md-6">@Html.TextBoxFor(m => m.unitPrice, new { @class = "form-control" })</div>
+            <div class="sellersj col-md-3"><p>&nbsp;</p></div>
+        </div>
+        <div class="row">
+            <div class="sellersj col-md-3">
+                <h4> 库存：</h4>
+
+            </div>
+            <div class="sellersj col-md-6">@Html.TextBoxFor(m => m.Inventory, new { @class = "form-control" })</div><!--value="null"可以设置默认值readonly表示只能读不能写-->
+            <div class="sellersj col-md-3"><p>&nbsp;</p></div>
+        </div>
+        <div class="row">
+            <div class="sellersj col-md-3">
+                <h4> 商品图片：</h4>
+            </div>
+            <div class="sellersj col-md-6"><input type="file" name="file" class="form-control" /></div>
+            <div class="sellersj col-md-3"><p>&nbsp;</p></div>
+        </div>
+        <div class="row">
+            <div class="sellersj col-md-3">
+                <h4>商品详情：</h4>
+
+            </div>
+            <div class="sellersj col-md-6">
+                @Html.TextAreaFor(m => m.productInfo, new { @clos = "20", @rows = "5", @style = "width:330px;" })
+
+            </div>
+            <div class="sellersj col-md-3"><p>&nbsp;</p></div>
+        </div>
         
-        <div class="sellersj col-md-2">
-            <h4>商品名称：</h4>
+        </div>
+        <div class="col-md-4">
+            @if (Model != null)
+            {
+                <img src="@Html.Raw(Model.imagePath)" ,alt="暂无图片">
+            }
 
-        </div>
-        <div class="sellersj col-md-4">@Html.TextBoxFor(m =>m.productName, new { @class = "form-control" })</div>
-        <div class="sellersj col-md-6"><p></p></div>
-        <div class="sellersj col-md-2">
-            <h4> 单价：</h4>
-
-        </div>
-        <div class="sellersj col-md-4">@Html.TextBoxFor(m => m.unitPrice, new { @class = "form-control" })</div>
-        <div class="sellersj col-md-6"><p></p></div>
-        <div class="sellersj col-md-2">
-            <h4> 库存：</h4>
-
-        </div>
-        <div class="sellersj col-md-4">@Html.TextBoxFor(m => m.Inventory, new { @class = "form-control" })</div><!--value="null"可以设置默认值readonly表示只能读不能写-->
-        <div class="sellersj col-md-6"><p></p></div>
-        <div class="sellersj col-md-2">
-           <h4>商品详情：</h4>
-
-        </div>
-        <div class="sellersj col-md-4">
-            @Html.TextAreaFor(m=>m.productInfo,new { @name = "yj",@clos = "20",@rows = "5",@style = "width:330px;" })
-                         
-        </div>
-        <div class="sellersj col-md-6"><p></p></div>
+</div>
     </div>
     <hr>
     <div class="sellersj col-md-12"><p></p></div>

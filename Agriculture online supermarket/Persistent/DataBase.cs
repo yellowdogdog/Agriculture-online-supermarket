@@ -118,14 +118,14 @@ namespace Agriculture_online_supermarket.Persistent
         }
         public static int exist(string KeyWord)//1:存在于Shop中,2存在于Shopper中，3：存在于manager中
         {
-            String sql = "count * from db_Shop where ShpID='" + KeyWord + "'";
+            String sql = "select count (*) from db_Shop where ShpID='" + KeyWord + "'";
             DataBase db = new DataBase();
             int c = db.Count(sql);
             if (c > 0) return 1;
-            sql = "count * from db_Shopper where ShperID='" + KeyWord + "'";
+            sql = "select count (*) from db_Shopper where ShperID='" + KeyWord + "'";
             c = db.Count(sql);
             if (c > 0) return 2;
-            sql = "count * from db_Manager where MngID='" + KeyWord + "'";
+            sql = "select count (*) from db_Manager where MngID='" + KeyWord + "'";
             c = db.Count(sql);
             if (c > 0) return 3;
             return -1;

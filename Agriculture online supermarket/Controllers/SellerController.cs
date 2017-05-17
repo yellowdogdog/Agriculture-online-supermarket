@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data;
 using System.Reflection;
+using System.IO;
 
 namespace Agriculture_online_supermarket.Controllers
 {
@@ -108,13 +109,26 @@ namespace Agriculture_online_supermarket.Controllers
             sql.DeleteProduct(ProductId);
             return RedirectToAction("SellerIndex");
         }
-        public ActionResult SaveProductInfo(ProductInfoViewModel product)
+        public ActionResult SaveProductInfo(ProductInfoViewModel product, HttpPostedFileBase file)
         {
+            
+            string imagePath="";
+            
             //将模型中数据保存
             string ShpID = (string)Session["id"];
+            if (file != null)
+            {
+                
+                imagePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/images/productimage/") + ShpID +DateTime.Now.ToString() + Path.GetExtension(file.FileName);
+                file.SaveAs(imagePath);
+            }
             LinkToSQL sql = new LinkToSQL();
-            if (product.productId == "") sql.AddCmdInfo(ShpID, product.productName, product.productInfo, product.unit, product.unitPrice.ToString());
-            else sql.UpdateCmdInfo(ShpID, product.productId, product.productName, product.productInfo, product.unit, product.unitPrice.ToString());
+            if (product.productId == "") sql.AddCmdInfo(ShpID, product.productName, product.productInfo, product.unit, product.unitPrice.ToString(), Path.GetExtension(file.FileName));
+            else
+            {                              
+                sql.UpdateCmdInfo(ShpID, product.productId, product.productName, product.productInfo, product.unit, product.unitPrice.ToString(), imagePath);
+
+            }
             return RedirectToAction("SellerIndex");
         }
         public ActionResult Deliver(DeliveryViewModel delivery)

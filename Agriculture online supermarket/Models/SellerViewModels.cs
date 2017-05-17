@@ -78,6 +78,10 @@ namespace Agriculture_online_supermarket.Models {
         {
             get;set;
         }
+        public string imagePath
+        {
+            get;set;
+        }
         /// <summary>
         /// 
         /// </summary>
