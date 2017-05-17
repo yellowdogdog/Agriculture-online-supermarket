@@ -2,6 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "订单管理";
 }
+@model List<Agriculture_online_supermarket.Models.SellerOrderViewModel>
 <h2>订单管理</h2>
 <table>
     <tr>
@@ -26,3 +27,253 @@
         <td>@Html.ActionLink("查看", "SellerOrderDetail", "Seller")</td>
     </tr>
 </table>
+
+<h2 class="text-center">订单管理</h2>
+<hr>
+
+
+<div class="container">
+
+
+    <div class="sellersj col-md-12"></div>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-11">
+                    <h3>卖家订单</h3>
+                    <hr>
+                    <ul id="myTab1" class="nav nav-tabs">
+                        <li class="active"> <a href="#home1" data-toggle="tab">未接订单 </a> </li>
+                        <li><a href="#pane2" data-toggle="tab">未确认收货订单</a></li>
+                        <li> <a href="#pane3" data-toggle="tab">待退款订单</a> </li>
+                        <li> <a href="#pane4" data-toggle="tab">已完成订单</a> </li>
+                    </ul>
+                    <div id="myTabContent1" class="tab-content">
+                        <div class="tab-pane fade in active" id="home1">
+                            <div class="order col-md-2">
+                                <p>订单编号</p>
+                            </div>
+                            <div class="order col-md-2"><p>订单描述</p></div>
+                            <div class="order col-md-2 col-md-offset-0"><p>商品数量</p></div>
+                            <div class="order col-md-2 ">日期</p></div>
+                            <div class="order col-md-1"><p>操作</p></div>
+                            <div class="order col-md-1"><p>发货</p></div>
+                            <div class="order col-md-2"><p>取消</p></div>
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                if (Model[i].orderStatus.Equals("待发货"))
+                                {
+                                    <div class="order col-md-2">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].orderId)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].productName)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2 col-md-offset-0">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].productNum)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2 ">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].orderDate.ToString())
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-1">
+                                        <p class="text-left">
+                                            @Html.ActionLink("查看", "SellerOrderDetail", "Seller", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-1">
+                                        <p class="text-left">
+                                            @Html.ActionLink("发货", "Delivery", "Seller", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2">
+                                        <p class="text-left">
+                                            @Html.ActionLink("取消", "Refuse", "Seller", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                        </p>
+                                    </div>
+
+                                }
+                            }
+
+
+
+
+                        </div>
+                        <div class="tab-pane fade" id="pane2">
+
+                            <div class="order col-md-2">
+                                <p>订单编号</p>
+                            </div>
+                            <div class="order col-md-2"><p>订单描述</p></div>
+                            <div class="order col-md-2"><p>商品数量</p></div>
+                            <div class="order col-md-2 col-md-2">
+                                <p>日期</p>
+                            </div>
+                            <div class="order col-md-2"><p>查看</p></div>
+                            <div class="order col-md-2"><p>修改</p></div>
+
+
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                if (Model[i].orderStatus.Equals("发货中"))
+                                {
+                                    <div class="order col-md-2">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].orderId)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].productName)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2 col-md-offset-0">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].productNum)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2 ">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].orderDate.ToString())
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2">
+                                        <p class="text-left">
+                                            @Html.ActionLink("查看", "SellerOrderDetail", "Seller", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                        </p>
+
+                                    </div>
+                                    <div class="order col-md-2">
+                                        <p class="text-left">
+                                            @Html.ActionLink("修改", "Delivery", "Seller", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                        </p>
+                                    </div>
+
+                                }
+                            }
+
+                        </div>
+                        <div class="tab-pane fade" id="pane3">
+
+                            <div class="order col-md-2">
+                                <p>订单编号</p>
+                            </div>
+                            <div class="order col-md-2"><p>订单描述</p></div>
+                            <div class="order col-md-2 col-md-offset-0"><p>商品数量</p></div>
+                            <div class="order col-md-2 col-md-1">
+                                <p>日期</p>
+                            </div>
+                            <div class="order col-md-1"><p>查看</p></div>
+                            <div class="order col-md-1"><p>同意</p></div>
+                            <div class="order col-md-2"><p>拒绝</p></div>
+
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                if (Model[i].orderStatus.Equals("待退款"))
+                                {
+                                    <div class="order col-md-2">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].orderId)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].productName)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2 col-md-offset-0">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].productNum)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2 ">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].orderDate.ToString())
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-1">
+                                        <p class="text-left">
+                                            @Html.ActionLink("查看", "SellerOrderDetail", "Seller", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-1">
+                                        <p class="text-left">
+                                            @Html.ActionLink("同意", "AgreeRefund", "Seller", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2">
+                                        <p class="text-left">
+                                            @Html.ActionLink("拒绝", "DisagreeRefund", "Seller", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                        </p>
+                                    </div>
+
+                                }
+                            }
+                        </div>
+
+                        <div class="tab-pane fade" id="pane4">
+
+                            <div class="order col-md-2">
+                                <p>订单编号</p>
+                            </div>
+
+                            <div class="order col-md-2"><p>订单描述</p></div>
+                            <div class="order col-md-2"><p>订单商品数量</p></div>
+                            <div class="order col-md-2 col-md-2">
+                                <p>日期</p>
+                            </div>
+                            <div class="order col-md-2"><p>查看</p></div><div class="order col-md-2"><p> </p></div>
+
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                if (Model[i].orderStatus.Equals("订单取消")
+                                    || Model[i].orderStatus.Equals("已完成")
+                                    || Model[i].orderStatus.Equals("同意退款")
+                                    || Model[i].orderStatus.Equals("拒绝退款"))
+                                {
+                                    <div class="order col-md-2">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].orderId)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].productName)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2 col-md-offset-0">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].productNum)
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2 ">
+                                        <p>
+                                            @Html.DisplayTextFor(modelitem => Model[i].orderDate.ToString())
+                                        </p>
+                                    </div>
+                                    <div class="order col-md-2">
+                                        <p class="text-left">
+                                            @Html.ActionLink("查看", "SellerOrderDetail", "Seller", new { @id = Model[i].orderId }, new { @class = "btn btn-danger" })
+                                        </p>
+                                    </div>
+
+
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
