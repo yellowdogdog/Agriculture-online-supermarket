@@ -2,7 +2,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "卖家商品管理";
 }
-
+@model List<Agriculture_online_supermarket.Models.SellerIndexViewModel>
 <h2>卖家商品管理</h2>
 
 @Html.ActionLink("上架商品", "AddProduct", "Seller")
@@ -12,4 +12,46 @@
     商品1
     @Html.ActionLink("修改", "ProductInfo", "Seller")
     @Html.ActionLink("删除", "DeleteProduct", "Seller")
+</div>
+<h2 class="text-center">卖家商品管理</h2>
+<hr>
+<div class="container">
+    <!--<div class="row text-center hidden-xs">-->
+    <div class="sellersj col-md-12">
+        <h3>上架商品</h3>
+    </div>
+
+    <!-- </div>-->
+
+    <div class="sellersj col-md-4"><a href="AddProduct"><img src="~/Content/images/addcart.png" alt="" class="img-responsive"></a></div>
+    <div class="sellersj col-md-8"></div>
+
+    <div class="container">
+
+        <div class="sellersj col-md-2">
+            <h3>所有商品</h3>
+
+        </div>
+        <div class="sellersj col-md-12"></div>
+        
+            <div class="sellersjm col-md-2"><p>商品编号</p></div>
+            <div class="sellersjm col-md-2"><p>商品名</p></div>
+            <div class="sellersjm col-md-2"><p></p></div>
+            <div class="sellersjm col-md-2"><p>库存数量</p></div>
+            <div class="sellersjm col-md-2"><p>下架</p></div>
+            <div class="sellersjm col-md-2"><p>修改</p></div>
+        
+
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <div class="sellersjshop col-md-2"><p>@Html.DisplayFor(modelitem=>Model[i].ProductId)</p></div>
+                <div class="sellersjshop col-md-2"><p>@Html.DisplayFor(modelitem => Model[i].ProductName)</p></div>
+                <div class="sellersjshop col-md-2"><p></p></div>
+                <div class="sellersjshop col-md-2"><p>@Html.DisplayFor(modelitem => Model[i].Inventory)</p></div>
+                <div class="sellersjshop col-md-2"><p>@Html.ActionLink("下架","DeleteProduct","Seller",new { @id =Model[i].ProductId },new { @class= "btn btn-default" })</p></div>
+                <div class="sellersjshop col-md-2"><p>@Html.ActionLink("修改", "ProductInfo", "Seller", new { @id = Model[i].ProductId }, new { @class = "btn btn-default" })</p></div>
+            }
+            
+        
+    </div>
 </div>

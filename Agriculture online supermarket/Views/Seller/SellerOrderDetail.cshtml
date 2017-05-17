@@ -3,6 +3,87 @@
     ViewBag.Title = "卖家订单查看";
 }
 <h2>卖家订单查看</h2>
+@model Agriculture_online_supermarket.Models.SellerOrderDetailViewModel
 
 
-@Html.ActionLink("返回", "SellerOrder", "Seller")
+
+<h2 class="text-center">订单明细</h2>
+<hr>
+<div class="container">
+    <!--<div class="row text-center hidden-xs">-->
+    <!-- </div>-->
+
+
+
+    <div class="container">
+
+        <div class="sellersj col-md-2">
+            <h4> 订单编号：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.IdtID)" readonly></div>
+        <div class="sellersj col-md-6"><p></p></div>
+
+
+        <div class="sellersj col-md-2">
+            <h4> 订单日期：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.IdtDate.ToString())" readonly></div>
+        <div class="sellersj col-md-6"><p></p></div>
+
+        <div class="sellersj col-md-2">
+            <h4>商品名称：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.CmdName)" readonly></div>
+        <div class="sellersj col-md-6"><p></p></div>
+        <div class="sellersj col-md-2">
+            <h4>买家昵称：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.ShperName)" readonly></div>
+        <div class="sellersj col-md-6"><p></p></div>
+
+        <div class="sellersj col-md-2">
+            <h4> 数量：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.IdtNum)" readonly></div><!--value="null"可以设置默认值readonly表示只能读不能写-->
+        <div class="sellersj col-md-6"><p></p></div>
+        <div class="sellersj col-md-2">
+            <h4> 总额：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.IdtTP)" readonly></div><!--value="null"可以设置默认值readonly表示只能读不能写-->
+        <div class="sellersj col-md-6"><p></p></div>
+
+        <div class="sellersj col-md-2">
+            <h4> 订单状态：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.IdtStatus)" readonly></div>
+        <div class="sellersj col-md-6"><p></p></div>
+        @if (Model.IdtStatus.Equals("发货中") ||
+        Model.IdtStatus.Equals("已完成") ||
+        Model.IdtStatus.Equals("待退款") ||
+        Model.IdtStatus.Equals("同意退款") ||
+        Model.IdtStatus.Equals("拒绝退款"))
+        {
+            <div class="sellersj col-md-2">
+                <h4> 物流单号：</h4>
+
+            </div>
+            <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.LogisticsID)" readonly></div><!--value="null"可以设置默认值readonly表示只能读不能写-->
+            <div class="sellersj col-md-6"><p></p></div>
+        }
+        
+    </div>
+    <hr>
+    <div class="sellersj col-md-5"><p></p></div>
+    <div class="sellersj col-md-1">
+        <p>
+            @Html.ActionLink("返回", "SellerOrder", "Seller", new { @class = "btn btn-default"})
+        </p>
+    </div>
+</div>

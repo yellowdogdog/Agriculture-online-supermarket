@@ -2,6 +2,58 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "发货";
 }
+@model Agriculture_online_supermarket.Models.DeliveryViewModel
+
 <h2>发货</h2>
 @Html.ActionLink("发货", "Deliver", "Seller")
+<h2 class="text-center">发货信息管理</h2>
+<hr>
+<div class="container">
+    <!--<div class="row text-center hidden-xs">-->
+    <div class="sellersj col-md-11">
+        <h3> 订单明细</h3>
+    </div>
 
+    <!-- </div>-->
+
+
+@using (Html.BeginForm("SaveAccountInfo", "Seller", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="container">
+        @Html.AntiForgeryToken()
+        <div class="sellersj col-md-2">
+            <h4> 订单编号：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.orderId)" readonly></div>
+        <div class="sellersj col-md-6"><p></p></div>
+        <div class="sellersj col-md-2">
+            <h4>商品名称：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.productName)" readonly></div>
+        <div class="sellersj col-md-6"><p></p></div>
+
+        <div class="sellersj col-md-2">
+            <h4> 数量：</h4>
+
+        </div>
+        <div class="sellersj col-md-4"><input type="text" class="form-control" value="@Html.Raw(Model.productNum)" readonly></div><!--value="null"可以设置默认值readonly表示只能读不能写-->
+        <div class="sellersj col-md-6"><p></p></div>
+
+        <div class="sellersj col-md-2">
+            <h4> 物流单号：</h4>
+
+        </div>
+        <div class="sellersj col-md-4">@Html.TextBoxFor(m => m.LogisticsID, new { @class = "form-control" })</div><!--value="null"可以设置默认值readonly表示只能读不能写-->
+        <div class="sellersj col-md-6"><p></p></div>
+    </div>
+    <hr>
+    <div class="sellersj col-md-5"><p></p></div>
+    <div class="sellersj col-md-1">
+        <p>
+            <button type="submit" class="btn btn-default">发货</button>
+        </p>
+    </div>
+</div>
+}
