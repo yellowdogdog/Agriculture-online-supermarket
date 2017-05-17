@@ -37,7 +37,7 @@ namespace Agriculture_online_supermarket.Controllers
         {
             //根据商品ID返回该商品信息
             string sql = "select CmdID productId,CmdName productName,CmdInfo productInfo,CmdInventory Inventory,CmdUnit unit,CmdUP unitPrice,PhotoUrl imagePath from db_Commodity WHere ShpID='" + ShpID
-                                    + "' and CmdID=" + CmdID + "'"; ;
+                                    + "' and CmdID='" + CmdID + "'"; ;
             DataBase db = new DataBase();
             DataSet ds = db.GetDataSet(sql);
             return ds;

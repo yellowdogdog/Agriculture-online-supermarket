@@ -25,6 +25,8 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.CustGetAllCmdInfo();
+
+
             IList<IndexModel> CustomerIndexList = DataSetToIList<IndexModel>(ds1, 0);
             return View(CustomerIndexList);//View(models) 要显示的商品列表
         }
@@ -102,7 +104,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataTable dt = ds1.Tables[0];
             for (int i = 0; i < dt.Rows.Count; i++)
             {
-                IndexModel model = new IndexModel(dt.Rows[i]["CmdName"].ToString(), Convert.ToDouble(dt.Rows[i]["CmdUP"]), "/Content/images/productimage/vegetable1.png",dt.Rows[i]["ShpID"].ToString(), dt.Rows[i]["CmdID"].ToString());
+                IndexModel model = new IndexModel(dt.Rows[i]["CmdName"].ToString(), Convert.ToDouble(dt.Rows[i]["CmdUP"]), dt.Rows[i]["PhotoUrl"].ToString(),dt.Rows[i]["ShpID"].ToString(), dt.Rows[i]["CmdID"].ToString());
                 models.Add(model);
             }
             return View("Index", models); // 搜索结果

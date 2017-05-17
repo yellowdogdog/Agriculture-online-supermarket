@@ -119,11 +119,11 @@ namespace Agriculture_online_supermarket.Controllers
             if (file != null)
             {
                 
-                imagePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/images/productimage/") + ShpID +DateTime.Now.ToString() + Path.GetExtension(file.FileName);
+                imagePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/images/productimage/") + ShpID +DateTime.Now.ToString("yyyyMMddHmmss") + Path.GetExtension(file.FileName);
                 file.SaveAs(imagePath);
             }
             LinkToSQL sql = new LinkToSQL();
-            if (product.productId == "") sql.AddCmdInfo(ShpID, product.productName, product.productInfo, product.unit, product.unitPrice.ToString(), Path.GetExtension(file.FileName));
+            if (product.productId == null) sql.AddCmdInfo(ShpID, product.productName, product.productInfo, product.unit, product.unitPrice.ToString(), imagePath);
             else
             {                              
                 sql.UpdateCmdInfo(ShpID, product.productId, product.productName, product.productInfo, product.unit, product.unitPrice.ToString(), imagePath);
