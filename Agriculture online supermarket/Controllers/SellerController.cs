@@ -119,8 +119,8 @@ namespace Agriculture_online_supermarket.Controllers
             if (file != null)
             {
                 
-                imagePath = System.Web.HttpContext.Current.Server.MapPath("~/Content/images/productimage/") + ShpID +DateTime.Now.ToString("yyyyMMddHmmss") + Path.GetExtension(file.FileName);
-                file.SaveAs(imagePath);
+                imagePath = "/Content/images/productimage/" + ShpID +DateTime.Now.ToString("yyyyMMddHmmss") + Path.GetExtension(file.FileName);
+                file.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~"+imagePath));
             }
             LinkToSQL sql = new LinkToSQL();
             if (product.productId == null) sql.AddCmdInfo(ShpID, product.productName, product.productInfo, product.unit, product.unitPrice.ToString(), imagePath);

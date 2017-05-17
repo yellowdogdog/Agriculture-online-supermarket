@@ -299,9 +299,9 @@ namespace Agriculture_online_supermarket.Persistent
                 String SellerName = drtmp["ShpName"].ToString();
                 IndexModel im = new IndexModel(dr["CmdName"].ToString(),
                            price,
-                            "/Content/images/productimage/vegetable1.png",//dr["UID"].ToString(),
+                            dr["PhotoUrl"].ToString(),
                            SellerName,
-                           keyword);
+                           (int)dr["CmdID"]);
                 tmp.Add(im);
             }
             return tmp;

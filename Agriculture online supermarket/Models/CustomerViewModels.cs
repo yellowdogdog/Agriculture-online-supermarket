@@ -20,10 +20,10 @@ namespace Agriculture_online_supermarket.Models
         {
             set;get;
         }
-        public string productID {
+        public int productID {
             get;set;
         }
-        public IndexModel(string productName,double price ,string imagePath,string sellerName,string productID)
+        public IndexModel(string productName,double price ,string imagePath,string sellerName,int productID)
         {
             this.productName = productName;
             this.imagePath = imagePath;

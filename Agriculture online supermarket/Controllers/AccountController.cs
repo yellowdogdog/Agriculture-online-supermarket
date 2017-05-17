@@ -502,6 +502,10 @@ namespace Agriculture_online_supermarket.Controllers
             //管理员管理界面
             //判断登入状态
             //获得用户列表，填充模型
+            if (needRedirect())
+            {
+                return redirectAction;
+            }
             return View();//View(Model models)List<Model>
         }
         public ActionResult UserInfo()
