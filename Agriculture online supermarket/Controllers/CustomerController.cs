@@ -92,19 +92,7 @@ namespace Agriculture_online_supermarket.Controllers
         public ActionResult Search(string SearchContent)
         {
             List<IndexModel> models = new List<IndexModel>();
-            for (int i = 0; i < 5; i++)
-            {
-                IndexModel indexmodel = new IndexModel();
-                indexmodel.imagePath = "/Content/images/productimage/vegetable1.png";
-                indexmodel.price = 100;
-                indexmodel.productName = "青菜";
-                indexmodel.sellerName = "农民" + i;
-                indexmodel.productID = "234";
-
-                models.Add(indexmodel);
-            }
-
-
+            
             //搜索并填充模型
             
             DataSet ds1;
@@ -222,7 +210,7 @@ namespace Agriculture_online_supermarket.Controllers
             else Response.Write(@"<script>alert('库存不足！无法增加数量！');</script>");
             return RedirectToAction("ShoppingCart");
         }
-        public ActionResult DecreaseNum(string OrderId)
+        public ActionResult DecreaseNum(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -232,14 +220,14 @@ namespace Agriculture_online_supermarket.Controllers
             //尝试减少购物车订单商品的数量（检查库存）
             LinkToSQL sql = new LinkToSQL();
             DataSet ds1;
-            ds1 = sql.CustGetCmdInfo(OrderId);
+            ds1 = sql.CustGetCmdInfo(id);
             DataTable dt = ds1.Tables[0];
             if (Convert.ToInt32(dt.Rows[0][0]) - 1 <= Convert.ToInt32(dt.Rows[0][1])) //这边要改！！
-                sql.UpdateShoppingCart(OrderId, -1);
+                sql.UpdateShoppingCart(id, -1);
             else Response.Write(@"<script>alert('库存已不足！请重新选择数量！');</script>");
             return RedirectToAction("ShoppingCart");
         }
-        public ActionResult ConfirmReceipt(string OrderId)
+        public ActionResult ConfirmReceipt(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -248,10 +236,10 @@ namespace Agriculture_online_supermarket.Controllers
             }
             //确认收货动作：更新订单
             LinkToSQL sql = new LinkToSQL();
-            sql.UpdateCustOrder(OrderId, "已收货");
+            sql.UpdateCustOrder(id, "已收货");
             return RedirectToAction("Orders");
         }
-        public ActionResult ApplyRefund(/*string OrderId*/)
+        public ActionResult ApplyRefund(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -260,7 +248,7 @@ namespace Agriculture_online_supermarket.Controllers
             }
             //申请退款动作：更新订单
             LinkToSQL sql = new LinkToSQL();
-            sql.UpdateCustOrder(OrderId, "申请退款中");
+            sql.UpdateCustOrder(id, "申请退款中");
             return RedirectToAction("Orders");
         }
         

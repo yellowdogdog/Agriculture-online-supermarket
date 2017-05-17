@@ -583,6 +583,10 @@ namespace Agriculture_online_supermarket.Controllers
         {
             get
             {
+                if (Session["state"] == null)
+                {
+                    return RedirectToAction("Index", "Customer");
+                }
                 if ((int)Session["state"] == 1 || (int)Session["state"] == 0)
                 {
                     return RedirectToAction("Index", "Customer");
