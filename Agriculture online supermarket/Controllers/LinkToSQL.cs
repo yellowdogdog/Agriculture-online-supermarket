@@ -11,14 +11,14 @@ namespace Agriculture_online_supermarket.Controllers
         public void DeleteProduct(String ProductID)
         {
             //给出产品ProductID，在数据库中删除该产品
-            string sql = "delete from db_Commodity where  CmdID=" + ProductID;
+            string sql = "delete from db_Commodity where  CmdID='" + ProductID + "'";
             DataBase db = new DataBase();
             db.ExecuteSQL(sql);
         }
         public void ChangeState(String OrderID, String IDState)
         {
             //给出订单OrderID，将此订单的状态改为IDState
-            string sql = " update db_Indent set IdtStatus=" + IDState + " from  db_Indent  where IdtID=" + OrderID;
+            string sql = " update db_Indent set IdtStatus=" + IDState + " from  db_Indent  where IdtID='" + OrderID + "'";
             DataBase db = new DataBase();
             db.ExecuteSQL(sql);
 
@@ -48,8 +48,8 @@ namespace Agriculture_online_supermarket.Controllers
         {
             //获得该卖家的所有订单信息
             string sql = "select IdtID orderId,cmdName productName,IdtNum productNum,IdtStatus orderStatus,IdtDate orderDate "
-                         + "from db_Indent db_Indent a,db_Commodity b, db_Shop c "
-                         + " where a.ShpID=b.ShpID and  a.CmdID=b.CmdID and a.ShpID=c.ShpID and ShpID=" + ShpID; ;
+                         + "from db_Indent a,db_Commodity b, db_Shop c "
+                         + " where a.ShpID=b.ShpID and  a.CmdID=b.CmdID and a.ShpID=c.ShpID and a.ShpID='" + ShpID + "'";
             DataBase db = new DataBase();
             DataSet ds = db.GetDataSet(sql);
             return ds;
@@ -59,8 +59,8 @@ namespace Agriculture_online_supermarket.Controllers
         {
             //获得该订单ID的所有信息
             string sql = "select IdtID IdtID,CmdName CmdName,ShperName ShperName,Logistics LogisticsID,IdtNum IdtNum,IdtStatus IdtStatus,IdtDate IdtDate,IdtTP IdtTP "
-                        + "from db_Indent db_Indent a,db_Commodity b, db_Shop c "
-                        + " where a.ShpID=b.ShpID and  a.CmdID=b.CmdID and a.ShpID=c.ShpID and IdtID=" + IdtID; ;
+                        + "from db_Indent a,db_Commodity b, db_Shop c "
+                        + " where a.ShpID=b.ShpID and  a.CmdID=b.CmdID and a.ShpID=c.ShpID and IdtID='" + IdtID + "'";
             DataBase db = new DataBase();
             DataSet ds = db.GetDataSet(sql);
             return ds;
@@ -70,7 +70,7 @@ namespace Agriculture_online_supermarket.Controllers
         public DataSet GetDelivery(string OrderId)
         {
             string sql = "select IdtID orderId,CmdName productName,IdtNum productNum,Logistics LogisticsID from db_Indent a,db_Commodity b "
-                       + "WHere a.ShpID=b.ShpID and  a.CmdID=b.CmdID  and IdtID=" + OrderId;
+                       + "WHere a.ShpID=b.ShpID and  a.CmdID=b.CmdID  and IdtID='" + OrderId + "'"; 
             DataBase db = new DataBase();
             DataSet ds = db.GetDataSet(sql);
             return ds;

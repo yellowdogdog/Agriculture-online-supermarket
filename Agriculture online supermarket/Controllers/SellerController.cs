@@ -25,7 +25,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.GetAllCmdInfo(ShpID);
-            IList<SellerIndexViewModel> SellerIndexList = DataSetToIList<SellerIndexViewModel>(ds1, 0);
+            IList<SellerIndexViewModel> SellerIndexList = DataSetToIList<SellerIndexViewModel>(new SellerIndexViewModel(),ds1);
             return View(SellerIndexList);//View(models) 正在售卖商品列表
         }
 
@@ -41,7 +41,7 @@ namespace Agriculture_online_supermarket.Controllers
             string ShpID = (string)Session["id"];
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.GetCmdInfo(ProductID, ShpID);
-            ProductInfoViewModel productInfo = DataSetToModel<ProductInfoViewModel>(ds1, 0);
+            ProductInfoViewModel productInfo = DataSetToModel<ProductInfoViewModel>(new ProductInfoViewModel(),ds1.Tables[0].Rows[0]);
             return View(productInfo);//View(model)商品信息(此model应该在提交SaveProductInfo()时作为参数）
         }
         public ActionResult SellerOrder()
@@ -56,7 +56,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.GetAllIdtInfo(ShpID);
-            IList<SellerOrderViewModel> SellerOrderList = DataSetToIList<SellerOrderViewModel>(ds1, 0);
+            IList<SellerOrderViewModel> SellerOrderList = DataSetToIList<SellerOrderViewModel>(new SellerOrderViewModel(),ds1);
             return View(SellerOrderList);//View(models) 订单列表
         }
         public ActionResult Delivery(string OrderId)
@@ -70,7 +70,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.GetDelivery(OrderId);
-            DeliveryViewModel delivery = DataSetToModel<DeliveryViewModel>(ds1, 0);
+            DeliveryViewModel delivery = DataSetToModel<DeliveryViewModel>(new DeliveryViewModel(), ds1.Tables[0].Rows[0]);
             return View(delivery);//View(model) 订单发货和修改发货信息都用此Action，model中的物流信息等可能为空。
         }
         public ActionResult SellerOrderDetail(string OrderId)
@@ -84,7 +84,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.GetIdtInfo(OrderId);
-            SellerOrderDetailViewModel sellerOrder = DataSetToModel<SellerOrderDetailViewModel>(ds1, 0);
+            SellerOrderDetailViewModel sellerOrder = DataSetToModel<SellerOrderDetailViewModel>(new SellerOrderDetailViewModel(),ds1.Tables[0].Rows[0]);
             return View(sellerOrder);//View(model) 订单信息
         }
         public ActionResult AddProduct()
@@ -187,7 +187,33 @@ namespace Agriculture_online_supermarket.Controllers
                 return true;
             return !((int)Session["state"] == 2);
         }
-        public T DataSetToModel<T>(DataSet ds, int tableIndex)
+        public static List<T> DataSetToIList<T>(T entity, DataSet ds) where T : new()
+        {
+            List<T> lists = new List<T>();
+            if (ds.Tables[0].Rows.Count > 0) {
+                foreach (DataRow row in ds.Tables[0].Rows)
+                { lists.Add(DataSetToModel(new T(), row)); }
+            }
+            return lists;
+        }
+        public static T DataSetToModel<T>(T entity, DataRow row) where T : new()
+        {   //初始化 如果为null  
+            if (entity == null){     entity = new T();   }   //得到类型   
+            Type type = typeof(T);   //取得属性集合  
+            PropertyInfo[] pi = type.GetProperties();
+            foreach (PropertyInfo item in pi){
+                //给属性赋值    
+                if (row[item.Name] != null && row[item.Name] != DBNull.Value) {
+                    if (item.PropertyType == typeof(System.Nullable<System.DateTime>)) {
+                        item.SetValue(entity, Convert.ToDateTime(row[item.Name].ToString()), null);
+                    } else {
+                        item.SetValue(entity, Convert.ChangeType(row[item.Name], item.PropertyType), null);
+                    }
+                }
+            }
+        return entity; } 
+
+      /*  public T DataSetToModel<T>(DataSet ds, int tableIndex)
         {
             DataTable dt = ds.Tables[tableIndex];
             T _t = (T)Activator.CreateInstance(typeof(T));
@@ -239,10 +265,11 @@ namespace Agriculture_online_supermarket.Controllers
                 result.Add(_t);
             }
             return result;
-        }
-        /// <summary>
-        /// 获得跳转返回
-        /// </summary>
+        }*/
+
+            /// <summary>
+            /// 获得跳转返回
+            /// </summary>
         private ActionResult redirectAction
         {
             get

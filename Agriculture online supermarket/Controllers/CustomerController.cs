@@ -27,7 +27,7 @@ namespace Agriculture_online_supermarket.Controllers
             ds1 = sql.CustGetAllCmdInfo();
 
 
-            IList<IndexModel> CustomerIndexList = DataSetToIList<IndexModel>(ds1, 0);
+            IList<IndexModel> CustomerIndexList = DataSetToIList<IndexModel>(new IndexModel(), ds1);
             return View(CustomerIndexList);//View(models) 要显示的商品列表
         }
         public ActionResult Detail(string id)
@@ -36,7 +36,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.CustGetCmdInfo(id);
-            DetailViewModel productInfo = DataSetToModel<DetailViewModel>(ds1, 0);
+            DetailViewModel productInfo = DataSetToModel<DetailViewModel>(new DetailViewModel(),ds1.Tables[0].Rows[0]);
             return View(productInfo);//View(model) 商品信息（例如名字、库存）
         }
         public ActionResult Orders()
@@ -51,7 +51,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.GetAllCustOrdInfo(CustID);
-            IList<CustomerOrderViewModel> CustomerOrderList = DataSetToIList<CustomerOrderViewModel>(ds1, 0);
+            IList<CustomerOrderViewModel> CustomerOrderList = DataSetToIList<CustomerOrderViewModel>(new CustomerOrderViewModel(),ds1);
             return View(CustomerOrderList);//View(models) 订单信息
         }
         public ActionResult ShoppingCart()
@@ -66,7 +66,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.GetCustShopCInfo(CustID);
-            IList<CustomerShoppingcartModle> CustomerShopCList = DataSetToIList<CustomerShoppingcartModle>(ds1, 0);
+            IList<CustomerShoppingcartModle> CustomerShopCList = DataSetToIList<CustomerShoppingcartModle>(new CustomerShoppingcartModle(),ds1);
             return View(CustomerShopCList);//View(models) 购物车里的商品信息
         }
         //[HttpPost] 
@@ -87,7 +87,7 @@ namespace Agriculture_online_supermarket.Controllers
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
             ds1 = sql.CustGetOrdDeInfo(OrderId);
-            CustomerOrderDetailModel CustomerOrder = DataSetToModel<CustomerOrderDetailModel>(ds1, 0);
+            CustomerOrderDetailModel CustomerOrder = DataSetToModel<CustomerOrderDetailModel>(new CustomerOrderDetailModel(),ds1.Tables[0].Rows[0]);
             return View(CustomerOrder);//View(model) 订单状态、物流号等
         }
 
@@ -253,61 +253,91 @@ namespace Agriculture_online_supermarket.Controllers
             sql.UpdateCustOrder(id, "申请退款中");
             return RedirectToAction("Orders");
         }
-        
 
-        public T DataSetToModel<T>(DataSet ds, int tableIndex)
+        public static List<T> DataSetToIList<T>(T entity, DataSet ds) where T : new()
         {
-            DataTable dt = ds.Tables[tableIndex];
-            T _t = (T)Activator.CreateInstance(typeof(T));
-            PropertyInfo[] propertys = _t.GetType().GetProperties();
-            foreach (PropertyInfo pi in propertys)
+            List<T> lists = new List<T>();
+            if (ds.Tables[0].Rows.Count > 0)
             {
-                for (int i = 0; i < dt.Columns.Count; i++)
+                foreach (DataRow row in ds.Tables[0].Rows)
+                { lists.Add(DataSetToModel(new T(), row)); }
+            }
+            return lists;
+        }
+        public static T DataSetToModel<T>(T entity, DataRow row) where T : new()
+        {   //初始化 如果为null  
+            if (entity == null) { entity = new T(); }   //得到类型   
+            Type type = typeof(T);   //取得属性集合  
+            PropertyInfo[] pi = type.GetProperties();
+            foreach (PropertyInfo item in pi)
+            {
+                //给属性赋值    
+                if (row[item.Name] != null && row[item.Name] != DBNull.Value)
                 {
-                    if (pi.Name.Equals(dt.Columns[i].ColumnName))
+                    if (item.PropertyType == typeof(System.Nullable<System.DateTime>))
                     {
-                        if (dt.Rows[0][i] != DBNull.Value)
-                            pi.SetValue(_t, dt.Rows[0][i], null);
-                        else
-                            pi.SetValue(_t, null, null);
-
+                        item.SetValue(entity, Convert.ToDateTime(row[item.Name].ToString()), null);
+                    }
+                    else {
+                        item.SetValue(entity, Convert.ChangeType(row[item.Name], item.PropertyType), null);
                     }
                 }
             }
-            return _t;
+            return entity;
         }
-        public IList<T> DataSetToIList<T>(DataSet ds, int tableIndex)
-        {
-            if (ds == null || ds.Tables.Count < 0)
-                return null;
-            if (tableIndex > ds.Tables.Count - 1)
-                return null;
-            if (tableIndex < 0)
-                tableIndex = 0;
-            DataTable dt = ds.Tables[tableIndex];
+        /*  public T DataSetToModel<T>(DataSet ds, int tableIndex)
+          {
+              DataTable dt = ds.Tables[tableIndex];
+              T _t = (T)Activator.CreateInstance(typeof(T));
+              PropertyInfo[] propertys = _t.GetType().GetProperties();
+              foreach (PropertyInfo pi in propertys)
+              {
+                  for (int i = 0; i < dt.Columns.Count; i++)
+                  {
+                      if (pi.Name.Equals(dt.Columns[i].ColumnName))
+                      {
+                          if (dt.Rows[0][i] != DBNull.Value)
+                              pi.SetValue(_t, dt.Rows[0][i], null);
+                          else
+                              pi.SetValue(_t, null, null);
 
-            IList<T> result = new List<T>();
-            for (int j = 0; j < dt.Rows.Count; j++)
-            {
-                T _t = (T)Activator.CreateInstance(typeof(T));
-                PropertyInfo[] propertys = _t.GetType().GetProperties();
-                foreach (PropertyInfo pi in propertys)
-                {
-                    for (int i = 0; i < dt.Columns.Count; i++)
-                    {
-                        if (pi.Name.Equals(dt.Columns[i].ColumnName))
-                        {
-                            if (dt.Rows[j][i] != DBNull.Value)
-                                pi.SetValue(_t, dt.Rows[j][i], null);
-                            else
-                                pi.SetValue(_t, null, null);
-                        }
-                    }
-                }
-                result.Add(_t);
-            }
-            return result;
-        }
+                      }
+                  }
+              }
+              return _t;
+          }
+          public IList<T> DataSetToIList<T>(DataSet ds, int tableIndex)
+          {
+              if (ds == null || ds.Tables.Count < 0)
+                  return null;
+              if (tableIndex > ds.Tables.Count - 1)
+                  return null;
+              if (tableIndex < 0)
+                  tableIndex = 0;
+              DataTable dt = ds.Tables[tableIndex];
+
+              IList<T> result = new List<T>();
+              for (int j = 0; j < dt.Rows.Count; j++)
+              {
+                  T _t = (T)Activator.CreateInstance(typeof(T));
+                  PropertyInfo[] propertys = _t.GetType().GetProperties();
+                  foreach (PropertyInfo pi in propertys)
+                  {
+                      for (int i = 0; i < dt.Columns.Count; i++)
+                      {
+                          if (pi.Name.Equals(dt.Columns[i].ColumnName))
+                          {
+                              if (dt.Rows[j][i] != DBNull.Value)
+                                  pi.SetValue(_t, dt.Rows[j][i], null);
+                              else
+                                  pi.SetValue(_t, null, null);
+                          }
+                      }
+                  }
+                  result.Add(_t);
+              }
+              return result;
+          } */
         private bool needRedirect()
         {
             if (Session["state"] == null)
