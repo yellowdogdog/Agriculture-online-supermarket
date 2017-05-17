@@ -28,7 +28,7 @@ namespace Agriculture_online_supermarket.Controllers
         public DataSet GetAllCmdInfo(string ShpID)
         {
             //获得该卖家的所有商品信息
-            string sql = "select CmdID productId,CmdName productName,CmdInventory Inventory from db_Commodity WHere ShpID like%'" + ShpID + "%'";
+            string sql = "select CmdID productId,CmdName productName,CmdInventory Inventory from db_Commodity WHere ShpID '" + ShpID + "'";
             DataBase db = new DataBase();
             DataSet ds = db.GetDataSet(sql);
             return ds;
@@ -38,8 +38,8 @@ namespace Agriculture_online_supermarket.Controllers
         public DataSet GetCmdInfo(string CmdID, string ShpID)
         {
             //根据商品ID返回该商品信息
-            string sql = "select CmdID productId,CmdName productName,CmdInfo productInfo,CmdInventory Inventory,CmdUnit unit,CmdUP unitPrice from db_Commodity WHere ShpID like %'" + ShpID
-                                    + "%' and CmdID like %" + CmdID + "%'"; ;
+            string sql = "select CmdID productId,CmdName productName,CmdInfo productInfo,CmdInventory Inventory,CmdUnit unit,CmdUP unitPrice from db_Commodity WHere ShpID '" + ShpID
+                                    + "' and CmdID " + CmdID + "'"; ;
             DataBase db = new DataBase();
             DataSet ds = db.GetDataSet(sql);
             return ds;
@@ -233,11 +233,11 @@ namespace Agriculture_online_supermarket.Controllers
         }
         public DataSet CustNumCompare(string OrderId)//给我该订单号的商品数量 和 该商品的 库存数量
         {
-            String sql = "select CmdID,ShpID from db_Indent where IdtID='" + OrderId + "'";
+            //String sql = "select CmdID,ShpID from db_Indent where IdtID='" + OrderId + "'";
             DataBase db = new DataBase();
-            DataRow dr = db.GetDataRow(sql);
+            //DataRow dr = db.GetDataRow(sql);
 
-            sql = "select b.CmdNum,a.CmdInventory  from db_Commodity a,db_Indent b    where a.CmdId=b.CmdId and a.IdtID='" + OrderId+"' and b.CmdID = '" + dr["CmdID"] + "' and b.ShpID='" + dr["ShpID"] + "'";
+            string sql = "select IdtNum, CmdInventory from db_Indent a,db_Commodity b where a.CmdID = b.CmdID and a.ShpID = b.ShpID and a.IdtID = "+OrderId.ToString();
             return db.GetDataSet(sql);
 
         }
