@@ -166,7 +166,7 @@ namespace Agriculture_online_supermarket.Controllers
         }
         public DataSet GetSearchResult(string SearchContent)//商品名中包含有SearchContent的所有商品及信息
         {
-            String sql = "Select * from  db_Commodity where CmdName LIKE'*" + SearchContent + "*'";
+            String sql = "Select * from  db_Commodity where CmdName LIKE'%" + SearchContent + "%'";
             DataBase db = new DataBase();
             return db.GetDataSet(sql);
         }
