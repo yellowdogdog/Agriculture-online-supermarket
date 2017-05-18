@@ -95,10 +95,10 @@ namespace Agriculture_online_supermarket.Controllers
         {
             //新增商品信息,生成一个商品编号
             //productName 商品名，productInfo 商品信息,unit 商品单位,unitPrice 商品单价
-            String sql = "Select CmdID from db_Commodity where ShpID='" + ShpID + "'";
+            String sql = "Select max(CmdID) from db_Commodity";
             DataBase db = new DataBase();
-            int max = db.Count(sql);
-            max++;
+            DataSet ds = db.GetDataSet(sql);
+            int max = Convert.ToInt32( ds.Tables[0].Rows[0][0].ToString())+1;
             Hashtable hs = new Hashtable();
             hs.Add("CmdID", max.ToString());
             hs.Add("ShpID", "'" + ShpID + "'");
