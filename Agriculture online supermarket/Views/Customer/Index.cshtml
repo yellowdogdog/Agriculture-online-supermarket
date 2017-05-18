@@ -4,17 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "首页";
 }
-<h2>首页</h2>
 
-<div>
-    根据帐号自动确定：
-    @Html.ActionLink("卖家首页", "SellerIndex", "Seller")
-    @Html.ActionLink("管理员首页","AdminIndex","Account")
-</div>
-@Html.ActionLink("订单", "Orders", "Customer")
-@Html.ActionLink("购物车", "ShoppingCart", "Customer")
-@Html.ActionLink("商品1", "detail", "Customer")
-@Html.ActionLink("搜索", "Search", "Customer")
 <div class="container">
   <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hidden-xs">
