@@ -142,7 +142,7 @@ namespace Agriculture_online_supermarket.Controllers
         }
         public DataSet CustGetCmdInfo(string id)//商品号为id的商品详细信息
         {
-            String sql = "Select * from db_Commodity where ShpID='" + id + "'";
+            String sql = "Select CmdID productId,CmdName productName,CmdInfo productInfo,CmdInventory Inventory,CmdUnit unit,CmdUP unitPrice,PhotoUrl imagePath from db_Commodity where CmdID='" + id + "'";
             DataBase db = new DataBase();
             return db.GetDataSet(sql);
         }
