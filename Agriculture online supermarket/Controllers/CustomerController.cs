@@ -76,7 +76,7 @@ namespace Agriculture_online_supermarket.Controllers
         //    //填充模型
         //    return View();//View(model) 结算时显示清单
         //}
-        public ActionResult OrderDetail(string OrderId)
+        public ActionResult OrderDetail(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -86,7 +86,7 @@ namespace Agriculture_online_supermarket.Controllers
             //填充模型
             DataSet ds1;
             LinkToSQL sql = new LinkToSQL();
-            ds1 = sql.CustGetOrdDeInfo(OrderId);
+            ds1 = sql.CustGetOrdDeInfo(id);
             CustomerOrderDetailModel CustomerOrder = DataSetToModel<CustomerOrderDetailModel>(new CustomerOrderDetailModel(),ds1.Tables[0].Rows[0]);
             return View(CustomerOrder);//View(model) 订单状态、物流号等
         }
@@ -124,7 +124,7 @@ namespace Agriculture_online_supermarket.Controllers
             sql.AddShoppingCart(ShopC.userId,ShopC.sellerId, ShopC.productId, ShopC.productNum,"购物车", DateTime.Now.ToLocalTime(),ShopC.TotalMoney);
             return RedirectToAction("ShoppingCart");
         }
-        public ActionResult Purchase(/*string ProductId 假设，只买了1个*/)
+        public ActionResult Purchase(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -133,12 +133,8 @@ namespace Agriculture_online_supermarket.Controllers
             }
             // 填充模型
             //debug use
-            List<CashierViewModel> models = new List<CashierViewModel>();
-            CashierViewModel model = new CashierViewModel("1", "茄子", 5.2, 2);
-            models.Add(model);
-            model = new CashierViewModel("2", "草莓", 2.58, 10);
-            models.Add(model);
-            return View("Cashier",models);//View("Cashier" model) 结算时显示清单
+            
+            return View("Cashier");//View("Cashier" model) 结算时显示清单
         }
         public ActionResult PurchaseAll()
         {
@@ -183,7 +179,7 @@ namespace Agriculture_online_supermarket.Controllers
             
             return RedirectToAction("Orders");
         }
-        public ActionResult DeleteProduct(string OrderId)//假设数据库利用订单表存储购物车
+        public ActionResult DeleteProduct(string id)//假设数据库利用订单表存储购物车
         {
             //检查登入状态
             if (needRedirect())
@@ -192,10 +188,10 @@ namespace Agriculture_online_supermarket.Controllers
             }
             //删除购物中的某个物品
             LinkToSQL sql = new LinkToSQL();
-            sql.DeleteShoppingCart(OrderId);
+            sql.DeleteShoppingCart(id);
             return RedirectToAction("ShoppingCart");
         }
-        public ActionResult IncreaseNum(string OrderId)
+        public ActionResult IncreaseNum(string id)
         {
             //检查登入状态
             if (needRedirect())
@@ -205,10 +201,10 @@ namespace Agriculture_online_supermarket.Controllers
             //尝试增加购物车订单商品的数量（检查库存）
             LinkToSQL sql = new LinkToSQL();
             DataSet ds1;
-            ds1 = sql.CustNumCompare(OrderId);
+            ds1 = sql.CustNumCompare(id);
             DataTable dt = ds1.Tables[0];
             if (Convert.ToInt32(dt.Rows[0][0])+1 <= Convert.ToInt32(dt.Rows[0][1])) //这边要改！！
-                sql.UpdateShoppingCart(OrderId,1);
+                sql.UpdateShoppingCart(id,1);
             else Response.Write(@"<script>alert('库存不足！无法增加数量！');</script>");
             return RedirectToAction("ShoppingCart");
         }
