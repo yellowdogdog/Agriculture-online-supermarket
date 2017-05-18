@@ -136,7 +136,7 @@ namespace Agriculture_online_supermarket.Controllers
         /// <returns></returns>
         public DataSet CustGetAllCmdInfo() //所有的商品以及其信息
         {
-            String sql = "Select CmdID productName,CmdUP price,a.PhotoUrl imagePath,b.ShpName sellerName,a.CmdID productID from db_Commodity a,db_Shop b where a.ShpID=b.ShpID";
+            String sql = "Select CmdName productName,CmdUP price,a.PhotoUrl imagePath,b.ShpName sellerName,a.CmdID productID from db_Commodity a,db_Shop b where a.ShpID=b.ShpID";
             DataBase db = new DataBase();
             return db.GetDataSet(sql);
         }
