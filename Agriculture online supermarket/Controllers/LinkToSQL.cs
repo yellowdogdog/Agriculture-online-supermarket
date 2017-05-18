@@ -91,7 +91,7 @@ namespace Agriculture_online_supermarket.Controllers
 
         }
 
-        public void AddCmdInfo(String ShpID, String productName, String productInfo, String unit, String unitPrice,string ImagePath)
+        public void AddCmdInfo(String ShpID, String productName, String productInfo, String Inventory, String unit, String unitPrice, string ImagePath)
         {
             //新增商品信息,生成一个商品编号
             //productName 商品名，productInfo 商品信息,unit 商品单位,unitPrice 商品单价
@@ -104,6 +104,7 @@ namespace Agriculture_online_supermarket.Controllers
             hs.Add("ShpID", "'" + ShpID + "'");
             hs.Add("CmdName", "'" + productName + "'");
             hs.Add("CmdInfo", "'" + productInfo + "'");
+            hs.Add("CmdInventory", "'" + Inventory + "'");
             hs.Add("CmdUnit", "'" + unit + "'");
             hs.Add("CmdUP", unitPrice);
             hs.Add("PhotoUrl", "'" + ImagePath + "'");
@@ -111,7 +112,7 @@ namespace Agriculture_online_supermarket.Controllers
 
         }
 
-        public void UpdateCmdInfo(String ShpID, String productId, String productName, String productInfo, String unit, String unitPrice, string ImagePath)
+        public void UpdateCmdInfo(String ShpID, String productId, String productName, String productInfo, String Inventory, String unit, String unitPrice, string ImagePath)
         {
             //更新商品信息商品ID为productId的商品信息
             //productName 商品名，productInfo 商品信息,unit 商品单位,unitPrice 商品单价
@@ -119,6 +120,7 @@ namespace Agriculture_online_supermarket.Controllers
             Hashtable ht = new Hashtable();
             ht.Add("CmdName", "'" + productName + "'");
             ht.Add("CmdInfo", "'" + productInfo + "'");
+            ht.Add("CmdInventory", "'" + Inventory + "'");
             ht.Add("CmdUnit", "'" + unit + "'");
             ht.Add("CmdUP", unitPrice);
             ht.Add("PhotoUrl", "'" + ImagePath + "'");
@@ -126,6 +128,7 @@ namespace Agriculture_online_supermarket.Controllers
             db.Updata("db_Commodity", ht, where);
 
         }
+    
 
         /// <summary>
         /// 以下为买家部分

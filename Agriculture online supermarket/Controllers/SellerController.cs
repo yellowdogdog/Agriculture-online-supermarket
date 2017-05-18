@@ -111,22 +111,22 @@ namespace Agriculture_online_supermarket.Controllers
         }
         public ActionResult SaveProductInfo(ProductInfoViewModel product, HttpPostedFileBase file)
         {
-            
-            string imagePath="";
-            
+
+            string imagePath = "";
+
             //将模型中数据保存
             string ShpID = (string)Session["id"];
             if (file != null)
             {
-                
-                imagePath = "/Content/images/productimage/" + ShpID +DateTime.Now.ToString("yyyyMMddHmmss") + Path.GetExtension(file.FileName);
-                file.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~"+imagePath));
+
+                imagePath = "/Content/images/productimage/" + ShpID + DateTime.Now.ToString("yyyyMMddHmmss") + Path.GetExtension(file.FileName);
+                file.SaveAs(System.Web.HttpContext.Current.Server.MapPath("~" + imagePath));
             }
             LinkToSQL sql = new LinkToSQL();
-            if (product.productId == null) sql.AddCmdInfo(ShpID, product.productName, product.productInfo, product.unit, product.unitPrice.ToString(), imagePath);
+            if (product.productId == null) sql.AddCmdInfo(ShpID, product.productName, product.productInfo, product.Inventory.ToString(), product.unit, product.unitPrice.ToString(), imagePath);
             else
-            {                              
-                sql.UpdateCmdInfo(ShpID, product.productId, product.productName, product.productInfo, product.unit, product.unitPrice.ToString(), imagePath);
+            {
+                sql.UpdateCmdInfo(ShpID, product.productId, product.productName, product.productInfo, product.Inventory.ToString(), product.unit, product.unitPrice.ToString(), imagePath);
 
             }
             return RedirectToAction("SellerIndex");
